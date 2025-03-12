@@ -1,0 +1,263 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+
+/*=========== TABLE OF CONTENTS ===========
+1. 
+2. 
+3. 
+4. 
+5. 
+
+=========================================*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*-------------------------------------
+ 2. Grid-container / Inline-Grid
+--------------------------------------*/
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr 100px;
+  grid-template-areas:
+    " header header "
+    " aside main "
+    " aside footer ";
+  min-height: 100vh;
+  font-family: "Poppins";
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/background.jpg);
+  backdrop-filter: blur(3px);
+}
+
+header {
+  grid-area: header;
+}
+
+:where(aside, header, section) {
+  background-color: #ebe5c2e1;
+}
+
+aside {
+  grid-area: aside;
+  border-right: solid 3px #000;
+  margin-top: 1rem;
+}
+
+main {
+  grid-area: main;
+}
+
+footer {
+  grid-area: footer;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.logo {
+  max-width: 300px;
+  max-height: 170px;
+  grid-area: 1 / 2 / 2 / 3;
+  padding: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.inline-grid {
+  display: inline-grid;
+  grid-template-columns: 80px auto 80px;
+  align-items: end;
+  justify-content: space-between;
+  border-bottom: solid 5px #000;
+}
+
+/*-------------------------------------
+ 2. NAV  // Hamburgerstyle
+--------------------------------------*/
+
+.off-screen-menu {
+  font-size: 1.5rem;
+  transition: 0.3s ease;
+}
+
+.off-screen-menu.active {
+  display: block;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.ham-menu {
+  height: 50px;
+  width: 40px;
+  position: relative;
+  display: none;
+}
+
+.ham-menu span {
+  height: 5px;
+  width: 100%;
+  background-color: #504b38;
+  border-radius: 25px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.3s ease;
+}
+
+.ham-menu span:nth-child(1) {
+  top: 25%;
+}
+
+.ham-menu span:nth-child(3) {
+  top: 75%;
+}
+
+.ham-menu.active span {
+  background-color: white;
+}
+
+.ham-menu.active span:nth-child(1) {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.ham-menu.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.ham-menu.active span:nth-child(3) {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+li a {
+  text-decoration: none;
+  color: #000;
+}
+
+li a:hover {
+  color: #203239;
+}
+
+li {
+  padding: 1rem;
+}
+/*-------------------------------------
+ 3. Dark/Light Mode
+--------------------------------------*/
+
+.dark-mode {
+  grid-area: 1 / 3 / 2 / 4;
+  display: flex;
+  justify-content: center;
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.checkbox-label {
+  background-color: #111;
+  width: 50px;
+  height: 26px;
+  border-radius: 50px;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fa-moon {
+  color: #f1c40f;
+}
+
+.fa-sun {
+  color: #f39c12;
+}
+
+.checkbox-label .ball {
+  background-color: #fff;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .checkbox-label .ball {
+  transform: translateX(24px);
+}
+
+section.dark,
+header.dark,
+aside.dark {
+  background-color: #292c35;
+  color: #fff;
+}
+
+aside.dark a {
+  color: #fff;
+}
+
+aside.dark a:hover {
+  color: #707070;
+}
+
+/*-------------------------------------
+ 4. Section
+--------------------------------------*/
+section {
+  margin: 1rem;
+  padding: 1rem;
+  border: solid 2px #000;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+/*-------------------------------------
+ 5. Media Queries
+--------------------------------------*/
+
+@media (max-width: 768px) {
+  .ham-menu {
+    display: block;
+  }
+  .off-screen-menu {
+    display: none;
+  }
+
+  .inline-grid {
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(2, auto);
+    align-items: normal;
+  }
+
+  nav {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+
+  .dark-mode {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+
+  .logo {
+    grid-area: 1 / 2 / 3 / 3;
+  }
+}
