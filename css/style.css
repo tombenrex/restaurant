@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Style+Script&display=swap");
 /*=========== TABLE OF CONTENTS ===========
 1. 
 2. 
@@ -15,38 +15,65 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /*-------------------------------------
  2. Grid-container / Inline-Grid
 --------------------------------------*/
 
-.grid-container {
+body {
   display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr 100px;
+  grid-template-columns: auto;
+  grid-template-rows: 100vh auto auto;
   grid-template-areas:
-    " header header "
-    " aside main "
-    " aside footer ";
+    "header "
+    "main "
+    "footer ";
   min-height: 100vh;
   font-family: "Poppins";
-  width: 100%;
-  height: 100%;
-  background-image: url(../img/background.jpg);
-  backdrop-filter: blur(3px);
 }
 
-header {
+.grid-header {
+  display: grid;
   grid-area: header;
+  background-image: url(../img/header.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(3, auto);
 }
 
-:where(aside, header, section) {
-  background-color: #ebe5c2e1;
+.welcome {
+  grid-area: 2 / 1 / 3 / 5;
+  font-family: "Style Script";
+  color: #fff;
+  align-self: center;
+  justify-self: center;
+  font-size: 5rem;
+  background-image: url(../img/brush.png);
+  padding: 2rem 1rem 0 1rem;
 }
 
-aside {
-  grid-area: aside;
-  border-right: solid 3px #000;
-  margin-top: 1rem;
+.menu-header {
+  background-image: url(../img/brush.png);
+  background-size: contain;
+  justify-self: center;
+  font-size: 2rem;
+  padding: 2rem;
+}
+.menu-header a {
+  border: solid 0.1rem #ffffff;
+}
+
+.welcome-links {
+  grid-area: 3 / 1 / 4 / 5;
+  align-self: start;
+  justify-self: center;
+  background-image: url(../img/brush.png);
+  background-size: contain;
+  padding: 1rem;
 }
 
 main {
@@ -63,19 +90,111 @@ footer {
 .logo {
   max-width: 300px;
   max-height: 170px;
-  grid-area: 1 / 2 / 2 / 3;
+  grid-area: 1 / 1 / 2 / 5;
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
+.welcome-links a {
+  text-decoration: none;
+  color: #fff;
+  border: solid 0.1rem #ffffff;
+  padding: 1px 10px 1px 10px;
+  margin: 1rem;
+  background-color: #000000cb;
+  font-size: 2.5rem;
+}
+
+.menu-header a:hover,
+.welcome-links a:hover {
+  background-color: #ffffff7a;
+}
+
+/*-------------------------------------
+ 4. Section
+--------------------------------------*/
+section {
   padding: 1rem;
-  transition: all 0.3s ease-in-out;
+  border: solid 3px #000;
+  min-height: 100vh;
+  color: #fff;
 }
 
-.inline-grid {
-  display: inline-grid;
-  grid-template-columns: 80px auto 80px;
-  align-items: end;
-  justify-content: space-between;
-  border-bottom: solid 5px #000;
+/*-------------------------------------
+ . Menu section
+--------------------------------------*/
+#menu-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  background-image: url(../img/menu.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
+.filters {
+  margin-bottom: 20px;
+}
+
+.filters button {
+  margin: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  background-color: #d9534f;
+  color: white;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.filters button:hover {
+  background-color: #c9302c;
+}
+
+.menu-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.menu-item {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.menu-item:hover {
+  transform: scale(1.05);
+}
+
+.menu-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.menu-item h2 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.menu-item p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-weight: bold;
+  color: #d9534f;
+  font-size: 16px;
+}
 /*-------------------------------------
  2. NAV  // Hamburgerstyle
 --------------------------------------*/
@@ -89,21 +208,17 @@ footer {
   display: block;
 }
 
-nav {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  grid-area: 1 / 1 / 2 / 2;
-}
-
-.ham-menu {
+.menu-btn {
   height: 50px;
   width: 40px;
   position: relative;
   display: none;
+  align-self: end;
+  justify-self: center;
+  grid-area: 3 / 1 / 4 / 2;
 }
 
-.ham-menu span {
+.menu-btn span {
   height: 5px;
   width: 100%;
   background-color: #504b38;
@@ -115,28 +230,28 @@ nav {
   transition: 0.3s ease;
 }
 
-.ham-menu span:nth-child(1) {
+.menu-btn span:nth-child(1) {
   top: 25%;
 }
 
-.ham-menu span:nth-child(3) {
+.menu-btn span:nth-child(3) {
   top: 75%;
 }
 
-.ham-menu.active span {
+.menu-btn.active span {
   background-color: white;
 }
 
-.ham-menu.active span:nth-child(1) {
+.menu-btn.active span:nth-child(1) {
   top: 50%;
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.ham-menu.active span:nth-child(2) {
+.menu-btn.active span:nth-child(2) {
   opacity: 0;
 }
 
-.ham-menu.active span:nth-child(3) {
+.menu-btn.active span:nth-child(3) {
   top: 50%;
   transform: translate(-50%, -50%) rotate(-45deg);
 }
@@ -158,9 +273,10 @@ li {
 --------------------------------------*/
 
 .dark-mode {
-  grid-area: 1 / 3 / 2 / 4;
-  display: flex;
-  justify-content: center;
+  grid-area: 3 / 4 / 4 / 5;
+  align-self: end;
+  justify-self: end;
+  margin: 0 3rem 0.2rem 0;
 }
 
 .checkbox {
@@ -207,7 +323,7 @@ li {
 section.dark,
 header.dark,
 aside.dark {
-  background-color: #292c35;
+  background-color: #292c35da;
   color: #fff;
 }
 
@@ -220,36 +336,29 @@ aside.dark a:hover {
 }
 
 /*-------------------------------------
- 4. Section
---------------------------------------*/
-section {
-  margin: 1rem;
-  padding: 1rem;
-  border: solid 2px #000;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-/*-------------------------------------
  5. Media Queries
 --------------------------------------*/
 
 @media (max-width: 768px) {
-  .ham-menu {
+  .menu-btn {
     display: block;
   }
   .off-screen-menu {
     display: none;
   }
 
-  .inline-grid {
+  .logo {
+    align-self: center;
+    justify-self: center;
+  }
+
+  /*   .inline-grid {
     grid-template-columns: repeat(3, auto);
     grid-template-rows: repeat(2, auto);
     align-items: normal;
-  }
+  } */
 
-  nav {
+  /*   nav {
     grid-area: 2 / 1 / 3 / 2;
   }
 
@@ -259,5 +368,5 @@ section {
 
   .logo {
     grid-area: 1 / 2 / 3 / 3;
-  }
+  } */
 }
