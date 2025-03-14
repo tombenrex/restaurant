@@ -17,8 +17,8 @@
 
 html {
   scroll-behavior: smooth;
-  width: 100vh;
-  min-height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 /*-------------------------------------
@@ -26,55 +26,52 @@ html {
 --------------------------------------*/
 
 body {
-  /* display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: 100vh auto auto;
-  grid-template-areas:
-    "header "
-    "main "
-    "footer ";
-  min-height: 100vh; */
   font-family: "Poppins";
 }
 
 /*-------------------------------------
  2. Header
 --------------------------------------*/
-.grid-header {
+.main-content {
   display: grid;
-  /*   grid-area: header; */
   background-image: url(../img/header.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: auto;
   grid-template-rows: repeat(3, auto);
-  min-height: 100vh; /* Full height on mobile */
-  min-width: 100vh;
+  grid-template-areas:
+    "header logo"
+    "main main"
+    "footer footer";
+  min-width: 100vw;
+  min-height: 100vh;
+}
+header {
+  grid-area: header;
+}
+
+main {
+  grid-area: main;
 }
 
 .logo {
   max-width: 300px;
   max-height: 170px;
-  grid-area: 1 / 1 / 2 / 5;
-  margin-left: 2rem;
-  margin-top: 1rem;
+  grid-area: logo;
+  justify-self: end;
 }
 
 .welcome {
-  grid-area: 2 / 1 / 3 / 5;
   font-family: "Style Script";
   color: #fff;
   align-self: center;
   justify-self: center;
   font-size: clamp(2rem, 5vw, 5rem);
-  padding: 2rem 1rem 0 1rem;
 }
 
 .header-links {
-  grid-area: 3 / 1 / 4 / 5;
-  align-self: start;
-  justify-self: center;
+  justify-self: end;
   background-size: contain;
   padding: 1rem;
 }
@@ -85,7 +82,6 @@ body {
   color: #fff;
   border: solid 0.1rem #ffffff;
   padding: 1px 10px 1px 10px;
-  margin: 1rem;
   background-color: #000000cb;
   font-size: clamp(1rem, 2vw, 2rem);
   transition-duration: 0.4s;
@@ -103,42 +99,10 @@ body {
 /*-------------------------------------
  4. Section
 --------------------------------------*/
-main {
-  grid-area: main;
-}
 
-section {
-  padding: 1rem;
-  border: solid 3px #000;
-  min-height: 100vh;
-  color: #fff;
-}
-/* 
-.menu-header {
-  background-size: contain;
-  justify-self: center;
-  font-size: 2rem;
-  padding: 2rem;
-}
-
-.menu-header a {
-  border: solid 0.1rem #ffffff;
-}
- */
 /*-------------------------------------
  . Menu section
 --------------------------------------*/
-#menu-section {
-  display: grid;
-  justify-items: center;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
-  background-image: url(../img/menu.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100vh;
-  min-width: 100vh;
-}
 
 .filters {
   margin-bottom: 20px;
@@ -160,14 +124,13 @@ section {
   background-color: #c9302c;
 }
 
-.menu-container {
+.menu-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   max-width: 1000px;
   margin: auto;
 }
-
 .menu-item {
   background: white;
   padding: 15px;
@@ -203,6 +166,7 @@ section {
   color: #d9534f;
   font-size: 16px;
 }
+
 /*-------------------------------------
  . NAV  // Hamburgerstyle
 --------------------------------------*/
@@ -213,7 +177,16 @@ section {
 }
 
 .off-screen-menu.active {
-  display: block;
+  width: 50%;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  background-color: #000000;
+  background-image: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .menu-btn {
@@ -229,7 +202,7 @@ section {
 .menu-btn span {
   height: 5px;
   width: 100%;
-  background-color: #504b38;
+  background-color: #fff;
   border-radius: 25px;
   position: absolute;
   left: 50%;
@@ -281,7 +254,6 @@ li {
 --------------------------------------*/
 
 .dark-mode {
-  grid-area: 3 / 4 / 4 / 5;
   align-self: end;
   justify-self: end;
   margin: 0 3rem 0.2rem 0;
@@ -328,30 +300,17 @@ li {
   transform: translateX(24px);
 }
 
-section.dark,
-header.dark,
-aside.dark {
-  background-color: #292c35da;
-  color: #fff;
-}
-
-aside.dark a {
-  color: #fff;
-}
-
-aside.dark a:hover {
-  color: #707070;
-}
-
 /*-------------------------------------
  . Footer
 --------------------------------------*/
 
 footer {
   grid-area: footer;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: clamp(0.8rem, 1.5vw, 1.5rem);
 }
 
 /*-------------------------------------
@@ -362,30 +321,14 @@ footer {
   .menu-btn {
     display: block;
   }
-  .off-screen-menu {
+  .header-links {
     display: none;
   }
 
   .logo {
     align-self: center;
     justify-self: center;
+    margin: 0;
+    display: none;
   }
-
-  /*   .inline-grid {
-    grid-template-columns: repeat(3, auto);
-    grid-template-rows: repeat(2, auto);
-    align-items: normal;
-  } */
-
-  /*   nav {
-    grid-area: 2 / 1 / 3 / 2;
-  }
-
-  .dark-mode {
-    grid-area: 1 / 1 / 2 / 2;
-  }
-
-  .logo {
-    grid-area: 1 / 2 / 3 / 3;
-  } */
 }

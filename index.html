@@ -17,47 +17,37 @@
   <!-- Body -->
   <body>
     <!-- Header -->
-    <header class="grid-header">
+    <div class="main-content">
       <img class="logo" src="img/logo-dark.png" alt="logo brand" />
-
-      <h1 class="welcome">Welcome to our Restaurant</h1>
-      <div class="header-links">
-        <a href="#menu-section">Menu</a>
-        <a href="#1">Lunch</a>
-        <a href="#1">About Us</a>
-      </div>
-
-      <div class="dark-mode">
-        <input type="checkbox" class="checkbox" id="checkbox" />
-        <label for="checkbox" class="checkbox-label">
-          <i class="fas fa-moon"></i>
-          <i class="fas fa-sun"></i>
-          <span class="ball"></span>
-        </label>
-      </div>
-
-      <div class="menu-btn">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </header>
-
-    <main>
-      <section id="menu-section">
-        <header class="menu-header">
-          <div class="filters">
-            <a onclick="filterMenu('starters')">Starters</a>
-            <a onclick="filterMenu('main_courses')">Main Courses</a>
-            <a onclick="filterMenu('desserts')">Desserts</a>
+      <header>
+        <nav class="header-links off-screen-menu">
+          <a href="javascript:void(0);" onclick="showMenu()">Menu</a>
+          <a href="#1">Lunch</a>
+          <a href="#1">About Us</a>
+          <div class="dark-mode">
+            <input type="checkbox" class="checkbox" id="checkbox" />
+            <label for="checkbox" class="checkbox-label">
+              <i class="fas fa-moon"></i>
+              <i class="fas fa-sun"></i>
+              <span class="ball"></span>
+            </label>
           </div>
-        </header>
-        <div id="menu-container" class="menu-container"></div>
-      </section>
-    </main>
-    <!-- Footer -->
-    <footer>
-      <p>&copy; 2025 TomBenRex. All Rights Reserved.</p>
-    </footer>
+        </nav>
+      </header>
+      <main id="main-content">
+        <h1 class="welcome">Welcome to our Restaurant</h1>
+      </main>
+
+      <!-- Footer -->
+      <footer>
+        <div class="menu-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <p>&copy; 2025 TomBenRex</p>
+      </footer>
+    </div>
   </body>
 </html>

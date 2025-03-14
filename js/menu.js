@@ -5,6 +5,8 @@ async function fetchMenu() {
   try {
     const response = await fetch("json/menu.json");
     menuData = await response.json();
+    // Display all items initially (e.g., starters)
+    displayMenu(menuData.menu.starters); // Start by showing starters
   } catch (error) {
     console.error("Error fetching menu:", error);
   }
@@ -25,20 +27,44 @@ function displayMenu(items) {
     menuItem.classList.add("menu-item");
 
     menuItem.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
-            <h2>${item.name}</h2>
-            <p>${item.description}</p>
-            <span class="price">$${item.price.toFixed(2)}</span>
-        `;
+      <img src="${item.image}" alt="${item.name}">
+      <h2>${item.name}</h2>
+      <p>${item.description}</p>
+      <span class="price">$${item.price.toFixed(2)}</span>
+    `;
 
     menuContainer.appendChild(menuItem);
   });
 }
 
-// Function to filter menu items
-function filterMenu(category) {
-  if (!menuData.menu) return;
+function showMenu() {
+  const mainContent = document.getElementById("main-content");
 
+  // Create the menu content HTML structure
+  const menuContent = `
+    <section id="menu-section" class="menu-section">
+      <div class="menu-content">
+        <header class="menu-header">
+          <div class="filters">
+            <a onclick="filterMenu('starters')">Starters</a>
+            <a onclick="filterMenu('main_courses')">Main Courses</a>
+            <a onclick="filterMenu('desserts')">Desserts</a>
+          </div>
+        </header>
+        <div id="menu-container" class="menu-container"></div>
+      </div>
+    </section>
+  `;
+
+  // Replace main content with menu content
+  mainContent.innerHTML = menuContent;
+
+  // Call fetchMenu here to load data and populate the menu
+  fetchMenu();
+}
+
+// Filter menu based on category
+function filterMenu(category) {
   let filteredItems = [];
 
   if (category === "starters") {
@@ -51,6 +77,3 @@ function filterMenu(category) {
 
   displayMenu(filteredItems);
 }
-
-// Fetch menu on page load
-document.addEventListener("DOMContentLoaded", fetchMenu);
