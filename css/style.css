@@ -17,6 +17,8 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100vh;
+  min-height: 100vh;
 }
 
 /*-------------------------------------
@@ -24,67 +26,31 @@ html {
 --------------------------------------*/
 
 body {
-  display: grid;
+  /* display: grid;
   grid-template-columns: auto;
   grid-template-rows: 100vh auto auto;
   grid-template-areas:
     "header "
     "main "
     "footer ";
-  min-height: 100vh;
+  min-height: 100vh; */
   font-family: "Poppins";
 }
 
+/*-------------------------------------
+ 2. Header
+--------------------------------------*/
 .grid-header {
   display: grid;
-  grid-area: header;
+  /*   grid-area: header; */
   background-image: url(../img/header.jpg);
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   grid-template-columns: repeat(4, auto);
   grid-template-rows: repeat(3, auto);
-}
-
-.welcome {
-  grid-area: 2 / 1 / 3 / 5;
-  font-family: "Style Script";
-  color: #fff;
-  align-self: center;
-  justify-self: center;
-  font-size: 5rem;
-  background-image: url(../img/brush.png);
-  padding: 2rem 1rem 0 1rem;
-}
-
-.menu-header {
-  background-image: url(../img/brush.png);
-  background-size: contain;
-  justify-self: center;
-  font-size: 2rem;
-  padding: 2rem;
-}
-.menu-header a {
-  border: solid 0.1rem #ffffff;
-}
-
-.welcome-links {
-  grid-area: 3 / 1 / 4 / 5;
-  align-self: start;
-  justify-self: center;
-  background-image: url(../img/brush.png);
-  background-size: contain;
-  padding: 1rem;
-}
-
-main {
-  grid-area: main;
-}
-
-footer {
-  grid-area: footer;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  min-height: 100vh; /* Full height on mobile */
+  min-width: 100vh;
 }
 
 .logo {
@@ -95,41 +61,83 @@ footer {
   margin-top: 1rem;
 }
 
-.welcome-links a {
+.welcome {
+  grid-area: 2 / 1 / 3 / 5;
+  font-family: "Style Script";
+  color: #fff;
+  align-self: center;
+  justify-self: center;
+  font-size: clamp(2rem, 5vw, 5rem);
+  padding: 2rem 1rem 0 1rem;
+}
+
+.header-links {
+  grid-area: 3 / 1 / 4 / 5;
+  align-self: start;
+  justify-self: center;
+  background-size: contain;
+  padding: 1rem;
+}
+
+.filters a,
+.header-links a {
   text-decoration: none;
   color: #fff;
   border: solid 0.1rem #ffffff;
   padding: 1px 10px 1px 10px;
   margin: 1rem;
   background-color: #000000cb;
-  font-size: 2.5rem;
+  font-size: clamp(1rem, 2vw, 2rem);
+  transition-duration: 0.4s;
+}
+
+:where(.header-links, .menu-header, .welcome) {
+  background-image: url(../img/brush.png);
 }
 
 .menu-header a:hover,
-.welcome-links a:hover {
+.header-links a:hover {
   background-color: #ffffff7a;
 }
 
 /*-------------------------------------
  4. Section
 --------------------------------------*/
+main {
+  grid-area: main;
+}
+
 section {
   padding: 1rem;
   border: solid 3px #000;
   min-height: 100vh;
   color: #fff;
 }
+/* 
+.menu-header {
+  background-size: contain;
+  justify-self: center;
+  font-size: 2rem;
+  padding: 2rem;
+}
 
+.menu-header a {
+  border: solid 0.1rem #ffffff;
+}
+ */
 /*-------------------------------------
  . Menu section
 --------------------------------------*/
 #menu-section {
   display: grid;
+  justify-items: center;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   background-image: url(../img/menu.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 100vh;
+  min-width: 100vh;
 }
 
 .filters {
@@ -196,7 +204,7 @@ section {
   font-size: 16px;
 }
 /*-------------------------------------
- 2. NAV  // Hamburgerstyle
+ . NAV  // Hamburgerstyle
 --------------------------------------*/
 
 .off-screen-menu {
@@ -269,7 +277,7 @@ li {
   padding: 1rem;
 }
 /*-------------------------------------
- 3. Dark/Light Mode
+ . Dark/Light Mode
 --------------------------------------*/
 
 .dark-mode {
@@ -336,7 +344,18 @@ aside.dark a:hover {
 }
 
 /*-------------------------------------
- 5. Media Queries
+ . Footer
+--------------------------------------*/
+
+footer {
+  grid-area: footer;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/*-------------------------------------
+ . Media Queries
 --------------------------------------*/
 
 @media (max-width: 768px) {
