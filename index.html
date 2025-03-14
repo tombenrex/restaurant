@@ -16,14 +16,30 @@
   </head>
   <!-- Body -->
   <body>
-    <!-- Header -->
-    <div class="main-content">
-      <img class="logo" src="img/logo-dark.png" alt="logo brand" />
-      <header>
-        <nav class="header-links off-screen-menu">
-          <a href="javascript:void(0);" onclick="showMenu()">Menu</a>
-          <a href="#1">Lunch</a>
-          <a href="#1">About Us</a>
+    <!-- Grid Container -->
+    <div class="wrapper">
+      <!-- Header -->
+      <header class="header">
+        <a href="index.html"
+          ><img
+            class="logo"
+            src="img/logo-dark.png"
+            alt="Restaurant Larsson logo"
+        /></a>
+        <nav class="navigation" role="navigation">
+          <ul>
+            <li>
+              <a href="#" role="button" onclick="showMenu()" class="menu-toggle"
+                >Our Food</a
+              >
+            </li>
+            <li>
+              <a href="#" role="button" class="menu-toggle">Our History</a>
+            </li>
+            <li>
+              <a href="#" role="button" class="menu-toggle">Contact Us</a>
+            </li>
+          </ul>
           <div class="dark-mode">
             <input type="checkbox" class="checkbox" id="checkbox" />
             <label for="checkbox" class="checkbox-label">
