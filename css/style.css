@@ -239,7 +239,7 @@ main {
   width: 40px;
   position: relative;
   display: none;
-  margin: 2rem;
+  margin-left: 1rem;
 }
 
 .menu-btn span {
@@ -286,7 +286,8 @@ main {
 
 .dark-mode {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  justify-content: center;
 }
 
 .checkbox {
@@ -364,7 +365,8 @@ footer p {
   }
 
   .welcome {
-    align-self: center;
+    justify-self: center;
+    align-self: end;
   }
 
   .header {
@@ -393,7 +395,7 @@ footer p {
     gap: 1rem;
   }
 
-  footer {
-    background-color: #00000093;
+  #main-content {
+    align-self: center;
   }
 }
