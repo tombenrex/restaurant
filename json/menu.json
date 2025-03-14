@@ -22,14 +22,14 @@
         "name": "Grilled Salmon",
         "description": "Fresh salmon fillet with lemon butter sauce.",
         "price": 18.99,
-        "image": "grilled_salmon.jpg"
+        "image": "img/grilled-salmon.jpg"
       },
       {
         "id": 4,
         "name": "Spaghetti Carbonara",
         "description": "Classic Italian pasta with creamy egg-based sauce and pancetta.",
         "price": 14.99,
-        "image": "spaghetti_carbonara.jpg"
+        "image": "img/spagetti-carbonara.jpg"
       }
     ],
     "desserts": [
@@ -38,14 +38,14 @@
         "name": "Tiramisu",
         "description": "Traditional Italian coffee-flavored dessert.",
         "price": 8.99,
-        "image": "tiramisu.jpg"
+        "image": "img/tiramisu.jpg"
       },
       {
         "id": 6,
         "name": "Chocolate Lava Cake",
         "description": "Warm chocolate cake with a gooey center.",
         "price": 9.99,
-        "image": "lava_cake.jpg"
+        "image": "img/lava-cake.jpg"
       }
     ]
   }
