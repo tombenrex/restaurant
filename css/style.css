@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Style+Script&display=swap");
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 /*=========== TABLE OF CONTENTS ===========
 1. 
 2. 
@@ -49,9 +50,15 @@ body {
 }
 
 .header {
-  border-bottom: solid 0.1rem #ffffff;
+  border-bottom: solid 0.1rem #ffffff81;
   align-items: flex-end;
   grid-area: header;
+  background: linear-gradient(
+    66deg,
+    rgb(159 159 159) 0%,
+    rgb(9 9 121 / 33%) 35%,
+    rgb(255 255 255 / 23%) 100%
+  );
 }
 /* 
 header { */
@@ -65,6 +72,8 @@ header { */
 
 main {
   grid-area: main;
+  display: flex;
+  justify-content: center;
 }
 
 .logo {
@@ -88,11 +97,12 @@ main {
 --------------------------------------*/
 
 .filters {
-  margin-bottom: 20px;
   justify-content: center;
   display: flex;
   gap: 1rem;
+  transition: 0.3s ease;
 }
+
 .filters a {
   color: #ffffff;
   font-size: clamp(1rem, 2vw, 2rem);
@@ -100,6 +110,7 @@ main {
   background-color: #000000;
   padding: 0.5rem;
   border-radius: 10px;
+  transition-duration: 0.4s;
 }
 
 .filters a:hover {
@@ -125,7 +136,7 @@ main {
 .menu-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  gap: 15px;
   max-width: 1000px;
   grid-template-areas:
     "header"
@@ -190,6 +201,8 @@ main {
   transition: 0.3s ease;
   display: flex;
   gap: 0.5rem;
+  flex-direction: row-reverse;
+  font-family: "open sans";
 }
 
 .navigation li {
@@ -199,29 +212,32 @@ main {
 .navigation li a {
   text-decoration: none;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .navigation li a:hover {
   color: #203239;
 }
+
 .navigation ul {
   gap: 0.5rem;
   display: flex;
 }
 
 .navigation a {
-  text-decoration: none;
+  /*   text-decoration: none; */
   color: #fff;
-  border: solid 0.1rem #ffffff;
+  border: solid 0.1rem #ffffff80;
   padding: 1px 10px 1px 10px;
   background-color: #000000cb;
   font-size: clamp(1rem, 2vw, 2rem);
   transition-duration: 0.4s;
   justify-content: center;
   display: flex;
+  border-radius: 10px;
 }
 
-.navigation.active {
+/* .navigation.active {
   width: 50%;
   height: 100%;
   left: 0;
@@ -232,7 +248,7 @@ main {
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
-}
+} */
 
 .menu-btn {
   height: 50px;
@@ -286,8 +302,7 @@ main {
 
 .dark-mode {
   display: flex;
-  /* align-items: center; */
-  justify-content: center;
+  align-items: center;
 }
 
 .checkbox {
@@ -387,12 +402,15 @@ footer p {
     height: 100%;
     left: 0;
     position: absolute;
-    background-color: #000000b7;
+    background-color: #000000f2;
     background-image: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
+  }
+  .dark-mode {
+    flex-direction: column;
   }
 
   #main-content {

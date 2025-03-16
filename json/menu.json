@@ -6,14 +6,14 @@
         "name": "Bruschetta",
         "description": "Toasted bread with fresh tomatoes, basil, and olive oil.",
         "price": 6.99,
-        "image": "img/bruschetta.jpg"
+        "image": "img/food/bruschetta.jpg"
       },
       {
         "id": 2,
         "name": "Caesar Salad",
         "description": "Crisp romaine lettuce with Caesar dressing and croutons.",
         "price": 7.99,
-        "image": "img/caesar-salad.jpg"
+        "image": "img/food/caesar-salad.jpg"
       }
     ],
     "main_courses": [
@@ -22,14 +22,14 @@
         "name": "Grilled Salmon",
         "description": "Fresh salmon fillet with lemon butter sauce.",
         "price": 18.99,
-        "image": "img/grilled-salmon.jpg"
+        "image": "img/food/grilled-salmon.jpg"
       },
       {
         "id": 4,
         "name": "Spaghetti Carbonara",
         "description": "Classic Italian pasta with creamy egg-based sauce and pancetta.",
         "price": 14.99,
-        "image": "img/spagetti-carbonara.jpg"
+        "image": "img/food/spagetti-carbonara.jpg"
       }
     ],
     "desserts": [
@@ -38,14 +38,14 @@
         "name": "Tiramisu",
         "description": "Traditional Italian coffee-flavored dessert.",
         "price": 8.99,
-        "image": "img/tiramisu.jpg"
+        "image": "img/food/tiramisu.jpg"
       },
       {
         "id": 6,
         "name": "Chocolate Lava Cake",
         "description": "Warm chocolate cake with a gooey center.",
         "price": 9.99,
-        "image": "img/lava-cake.jpg"
+        "image": "img/food/lava-cake.jpg"
       }
     ]
   }
