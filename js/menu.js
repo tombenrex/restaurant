@@ -67,6 +67,18 @@ function showMenu() {
 function filterMenu(category) {
   let filteredItems = [];
 
+  // Remove active class from all filter buttons
+  const filterButtons = document.querySelectorAll(".filters a");
+  filterButtons.forEach((button) => {
+    button.classList.remove("active");
+  });
+
+  // Add active class to the clicked button
+  const activeButton = document.querySelector(
+    `.filters a[onclick="filterMenu('${category}')"]`
+  );
+  activeButton.classList.add("active");
+
   if (category === "starters") {
     filteredItems = menuData.menu.starters;
   } else if (category === "main_courses") {
