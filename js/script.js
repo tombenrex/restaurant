@@ -1,5 +1,5 @@
 const hamMenu = document.querySelector(".menu-btn");
-
+const checkbox = document.getElementById("checkbox");
 const offScreenMenu = document.querySelector(".navigation");
 
 hamMenu.addEventListener("click", () => {
@@ -7,7 +7,17 @@ hamMenu.addEventListener("click", () => {
   offScreenMenu.classList.toggle("active");
 });
 
-const checkbox = document.getElementById("checkbox");
+// Close the menu when clicking outside
+document.addEventListener("click", (event) => {
+  // Check if the click was outside the navigation and hamburger menu
+  if (
+    !offScreenMenu.contains(event.target) &&
+    !hamMenu.contains(event.target)
+  ) {
+    hamMenu.classList.remove("active");
+    offScreenMenu.classList.remove("active");
+  }
+});
 
 checkbox.addEventListener("change", () => {
   document.body.classList.toggle("dark");
@@ -29,18 +39,24 @@ function activateNavItem(itemId) {
   activeLink.classList.add("active");
 }
 
-// Add event listeners to navigation links
-document.getElementById("menu-link").addEventListener("click", function () {
-  activateNavItem("menu-link");
-  showMenu(); // Call showMenu or handle navigation
-});
+document.addEventListener("DOMContentLoaded", function () {
+  // Add event listeners to navigation links
+  document.getElementById("menu-link").addEventListener("click", function () {
+    activateNavItem("menu-link");
+    showMenu(); // Call showMenu or handle navigation
+  });
 
-document.getElementById("history-link").addEventListener("click", function () {
-  activateNavItem("history-link");
-  // You can add functionality to navigate to the history section here
-});
+  document
+    .getElementById("history-link")
+    .addEventListener("click", function () {
+      activateNavItem("history-link");
+      // You can add functionality to navigate to the history section here
+    });
 
-document.getElementById("contact-link").addEventListener("click", function () {
-  activateNavItem("contact-link");
-  // You can add functionality to navigate to the contact section here
+  document
+    .getElementById("contact-link")
+    .addEventListener("click", function () {
+      activateNavItem("contact-link");
+      // You can add functionality to navigate to the contact section here
+    });
 });

@@ -61,6 +61,9 @@ function showMenu() {
 
   // Call fetchMenu here to load data and populate the menu
   fetchMenu();
+
+  // Set the default active button to 'Starters' when the menu is shown
+  setActiveMenuButton("starters");
 }
 
 // Filter menu based on category
@@ -88,4 +91,17 @@ function filterMenu(category) {
   }
 
   displayMenu(filteredItems);
+}
+function setActiveMenuButton(category) {
+  const filterButtons = document.querySelectorAll(".filters a");
+  filterButtons.forEach((button) => {
+    button.classList.remove("active");
+  });
+
+  const activeButton = document.querySelector(
+    `.filters a[onclick="filterMenu('${category}')"]`
+  );
+  if (activeButton) {
+    activeButton.classList.add("active");
+  }
 }

@@ -166,10 +166,6 @@ main {
   transition: transform 0.2s ease-in-out;
 }
 
-.menu-item:hover {
-  transform: scale(1.05);
-}
-
 .menu-item img {
   /* width: 50px; */
   max-height: 150px;
