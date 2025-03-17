@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/script.js" defer></script>
     <script src="js/menu.js" defer></script>
+    <script src="js/darkmode.js" defer></script>
+    <script src="js/history.js" defer></script>
+    <script src="js/contact.js" defer></script>
 
     <script src="https://kit.fontawesome.com/70f7a209bd.js"></script>
   </head>
@@ -19,40 +22,40 @@
     <div class="wrapper">
       <!-- Header -->
       <header class="header">
-        <a href="index.html"
+        <!-- <a href="index.html"
           ><img
             class="logo"
             src="img/logo-dark.png"
             alt="Restaurant Larsson logo"
-        /></a>
+        /></a> -->
         <nav class="navigation">
+          <!-- <div class="logo-container"> -->
+          <a href="index.html">
+            <img
+              class="logo"
+              src="img/logo-dark.png"
+              alt="Restaurant Larsson logo"
+            />
+          </a>
+          <!-- </div> -->
           <ul>
             <li>
-              <a a href="#" role="button" class="menu-toggle" id="menu-link"
-                >Our Food</a
-              >
+              <button class="nav-btn" id="menu-link" onclick="showMenu()">
+                Our Food
+              </button>
             </li>
             <li>
-              <a
-                href="#"
-                role="button"
-                onclick="activateNavItem('history');"
-                class="menu-toggle"
-                id="history-link"
-                >Our History</a
-              >
+              <button class="nav-btn" id="history-link" onclick="ourHistory()">
+                Our History
+              </button>
             </li>
             <li>
-              <a
-                href="#"
-                role="button"
-                onclick="activateNavItem('contact');"
-                class="menu-toggle"
-                id="contact-link"
-                >Contact Us</a
-              >
+              <button class="nav-btn" id="contact-link" onclick="showContact()">
+                Contact Us
+              </button>
             </li>
           </ul>
+
           <div class="dark-mode">
             <input type="checkbox" class="checkbox" id="checkbox" />
             <label for="checkbox" class="checkbox-label">
@@ -63,9 +66,7 @@
           </div>
         </nav>
       </header>
-      <main id="main-content">
-        <h1 class="welcome">Welcome to our Restaurant</h1>
-      </main>
+      <main id="main-content"></main>
 
       <!-- Footer -->
       <footer>

@@ -30,7 +30,10 @@ function displayMenu(items) {
       <img src="${item.image}" alt="${item.name}">
       <h2>${item.name}</h2>
       <p>${item.description}</p>
+      <div class="price-buy">
       <span class="price">$${item.price.toFixed(2)}</span>
+      <i class="fa-solid fa-cart-shopping"></i>
+      </div>
     `;
 
     menuContainer.appendChild(menuItem);
@@ -43,7 +46,7 @@ function showMenu() {
   // Create the menu content HTML structure
   const menuContent = `
     <section id="menu-section" class="menu-section">
-      <div class="menu-content">
+      
         <header class="menu-header">
           <div class="filters">
             <a onclick="filterMenu('starters')">Starters</a>
@@ -52,7 +55,7 @@ function showMenu() {
           </div>
         </header>
         <div id="menu-container" class="menu-container"></div>
-      </div>
+      
     </section>
   `;
 

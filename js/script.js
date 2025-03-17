@@ -1,5 +1,4 @@
 const hamMenu = document.querySelector(".menu-btn");
-const checkbox = document.getElementById("checkbox");
 const offScreenMenu = document.querySelector(".navigation");
 
 hamMenu.addEventListener("click", () => {
@@ -19,17 +18,10 @@ document.addEventListener("click", (event) => {
   }
 });
 
-checkbox.addEventListener("change", () => {
-  document.body.classList.toggle("dark");
-  document
-    .querySelectorAll("header, aside, section")
-    .forEach((el) => el.classList.toggle("dark"));
-});
-
 // Function to handle the active navigation item
 function activateNavItem(itemId) {
   // Remove active class from all navigation items
-  const navLinks = document.querySelectorAll(".navigation a");
+  const navLinks = document.querySelectorAll(".navigation button");
   navLinks.forEach((link) => {
     link.classList.remove("active");
   });
@@ -44,19 +36,25 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("menu-link").addEventListener("click", function () {
     activateNavItem("menu-link");
     showMenu(); // Call showMenu or handle navigation
+    hamMenu.classList.remove("active"); // Close the menu when clicking on the link
+    offScreenMenu.classList.remove("active"); // Close the menu when clicking on the link
   });
 
   document
     .getElementById("history-link")
     .addEventListener("click", function () {
       activateNavItem("history-link");
-      // You can add functionality to navigate to the history section here
+      hamMenu.classList.remove("active"); // Close the menu when clicking on the link
+      offScreenMenu.classList.remove("active"); // Close the menu when clicking on the link
+      ourHistory();
     });
 
   document
     .getElementById("contact-link")
     .addEventListener("click", function () {
       activateNavItem("contact-link");
-      // You can add functionality to navigate to the contact section here
+      hamMenu.classList.remove("active"); // Close the menu when clicking on the link
+      offScreenMenu.classList.remove("active"); // Close the menu when clicking on the link
+      contactUs();
     });
 });
