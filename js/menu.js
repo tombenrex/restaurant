@@ -1,4 +1,6 @@
 let menuData = {}; // Variable to store fetched data
+let basket = []; // Array to store items added to the basket
+let totalPrice = 0; // Variable to store the total price of items in the basket
 
 // Fetch JSON file and initialize menu
 async function fetchMenu() {
@@ -31,8 +33,10 @@ function displayMenu(items) {
       <h2>${item.name}</h2>
       <p>${item.description}</p>
       <div class="price-buy">
-      <span class="price">$${item.price.toFixed(2)}</span>
-      <i class="fa-solid fa-cart-shopping"></i>
+        <span class="price">$${item.price.toFixed(2)}</span>
+        <i class="fa-solid fa-cart-shopping" onclick="addToBasket(${
+          item.id
+        }, '${item.name}', ${item.price})"></i>
       </div>
     `;
 
@@ -40,22 +44,80 @@ function displayMenu(items) {
   });
 }
 
+// Function to add an item to the basket
+function addToBasket(itemId, itemName, itemPrice) {
+  // Check if the item is already in the basket
+  const existingItem = basket.find((item) => item.id === itemId);
+
+  if (existingItem) {
+    // If the item exists, increase the quantity
+    existingItem.quantity += 1;
+  } else {
+    // If the item doesn't exist, add it to the basket
+    basket.push({ id: itemId, name: itemName, price: itemPrice, quantity: 1 });
+  }
+
+  // Update total price
+  totalPrice += itemPrice;
+
+  // Update the basket button to show the number of items
+  updateBasketButton();
+}
+
+// Function to update the basket button with the number of items in the basket
+function updateBasketButton() {
+  const basketButton = document.getElementById("basket-button");
+  const itemCount = basket.reduce((total, item) => total + item.quantity, 0);
+  if (basketButton) {
+    basketButton.textContent = `Basket: ${itemCount} items`;
+  }
+}
+
+// Function to show the basket details (items and prices) when clicked
+function showBasketDetails() {
+  const basketDetailsContainer = document.getElementById("basket-details");
+  basketDetailsContainer.innerHTML = ""; // Clear previous details
+
+  if (basket.length === 0) {
+    basketDetailsContainer.innerHTML = "<p>Your basket is empty.</p>";
+  } else {
+    // Loop through each item in the basket and display it
+    basket.forEach((item) => {
+      const basketItem = document.createElement("div");
+      basketItem.classList.add("basket-item");
+      basketItem.innerHTML = `
+        <span>${item.name} (x${item.quantity})</span>
+        <span>$${(item.price * item.quantity).toFixed(2)}</span>
+      `;
+      basketDetailsContainer.appendChild(basketItem);
+    });
+
+    const totalDiv = document.createElement("div");
+    totalDiv.classList.add("basket-total");
+    totalDiv.innerHTML = `<strong>Total: $${totalPrice.toFixed(2)}</strong>`;
+    basketDetailsContainer.appendChild(totalDiv);
+  }
+}
+
+// Function to show the menu
 function showMenu() {
   const mainContent = document.getElementById("main-content");
 
   // Create the menu content HTML structure
   const menuContent = `
     <section id="menu-section" class="menu-section">
-      
-        <header class="menu-header">
-          <div class="filters">
-            <a onclick="filterMenu('starters')">Starters</a>
-            <a onclick="filterMenu('main_courses')">Main Courses</a>
-            <a onclick="filterMenu('desserts')">Desserts</a>
-          </div>
-        </header>
-        <div id="menu-container" class="menu-container"></div>
-      
+      <header class="menu-header">
+        <div class="filters">
+          <a onclick="filterMenu('starters')">Starters</a>
+          <a onclick="filterMenu('main_courses')">Main Courses</a>
+          <a onclick="filterMenu('desserts')">Desserts</a>
+          <button id="basket-button" onclick="showBasketDetails()">Basket: 0 items</button> 
+        </div>
+      </header>
+      <div id="menu-container" class="menu-container"></div>
+    </section>
+    <section id="basket-section" class="basket-section">
+      <div id="basket-details" class="basket-details"></div>
     </section>
   `;
 
@@ -95,6 +157,8 @@ function filterMenu(category) {
 
   displayMenu(filteredItems);
 }
+
+// Function to set active button
 function setActiveMenuButton(category) {
   const filterButtons = document.querySelectorAll(".filters a");
   filterButtons.forEach((button) => {

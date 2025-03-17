@@ -56,9 +56,6 @@ body {
 
 main {
   grid-area: main;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
 }
 
 .our-history {
@@ -80,6 +77,16 @@ main {
   font-size: clamp(0.8rem, 1.2vw, 1.2rem);
   color: #fff;
   font-family: inherit;
+}
+
+.basket-section {
+  grid-area: basket;
+  background: #fff;
+  max-width: 300px;
+  max-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 /*-------------------------------------
@@ -112,14 +119,21 @@ main {
   background-color: #007bff;
 }
 
-.menu-container {
+.menu-section {
   display: grid;
-  gap: 1rem;
+  grid-template-areas:
+    "menu-header menu-header"
+    "menu basket";
   justify-content: center;
 }
 
-.menu-header {
-  grid-area: header;
+.menu-container {
+  grid-area: menu;
+  display: grid;
+  gap: 1rem;
+  justify-content: center;
+  padding: 2rem;
+  max-width: 100%;
 }
 
 .menu-item {
@@ -130,8 +144,11 @@ main {
   transition: transform 0.2s ease-in-out;
 }
 
+.menu-header {
+  grid-area: menu-header;
+}
+
 .menu-item img {
-  /* width: 50px; */
   max-height: 150px;
   object-fit: cover;
   border-radius: 10px;
@@ -194,10 +211,6 @@ main {
 .nav-btn.active::after,
 .nav-btn.active::before {
   width: 100%;
-}
-
-.nav-btn.active {
-  border: 1px solid rgb(43, 76, 226); /* Add border with color */
 }
 
 .navigation {
@@ -370,36 +383,20 @@ footer p {
     flex-direction: column;
   }
 
-  main {
-    height: 100vh;
-    overflow: scroll;
-    display: flex;
-  }
   .filters {
     padding: 0.3rem 0 1rem 0;
-  }
-
-  #main-content {
-    align-self: center;
-    display: block;
   }
 
   .menu-container {
     padding: 0 2rem 0 2rem;
   }
 
-  .our-history {
-    max-height: 100vh;
-    overflow: scroll;
-  }
   .about-txt {
     margin-top: 2rem;
     margin-bottom: 3rem;
   }
-
-  .menu-btn {
-    background: firebrick;
-    padding: 2rem;
+  main {
+    overflow: scroll;
   }
 
   footer {
