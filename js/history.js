@@ -11,10 +11,12 @@ function ourHistory() {
         "<strong>Restaurant Larsson</strong>"
       );
       mainContent.innerHTML = `
-          <section class="our-history">
-          <h1 class="welcome">${welcomeData}</h1>
+          
+          <article class="our-history">
+          <h2 class="welcome">${welcomeData}</h2>
           <p class="about-txt">${boldedText.replace(/\n/g, "<br>")}</p>
-          </section>
+          </article>
+         
         `;
     } catch (error) {
       console.error("Error fetching home content:", error);

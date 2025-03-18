@@ -34,9 +34,9 @@ function displayMenu(items) {
       <p>${item.description}</p>
       <div class="price-buy">
         <span class="price">$${item.price.toFixed(2)}</span>
-        <i class="fa-solid fa-cart-shopping" onclick="addToBasket(${
-          item.id
-        }, '${item.name}', ${item.price})"></i>
+        <i class="fa-solid fa-square-plus" onclick="addToBasket(${item.id}, '${
+      item.name
+    }', ${item.price})"></i>
       </div>
     `;
 
@@ -68,8 +68,11 @@ function addToBasket(itemId, itemName, itemPrice) {
 function updateBasketButton() {
   const basketButton = document.getElementById("basket-button");
   const itemCount = basket.reduce((total, item) => total + item.quantity, 0);
+
   if (basketButton) {
-    basketButton.textContent = `Basket: ${itemCount} items`;
+    basketButton.innerHTML = `
+      <i class="fa-solid fa-cart-shopping"></i>  ${itemCount} 
+    `;
   }
 }
 
@@ -111,7 +114,7 @@ function showMenu() {
           <a onclick="filterMenu('starters')">Starters</a>
           <a onclick="filterMenu('main_courses')">Main Courses</a>
           <a onclick="filterMenu('desserts')">Desserts</a>
-          <button id="basket-button" onclick="showBasketDetails()">Basket: 0 items</button> 
+          <button id="basket-button" onclick="showBasketDetails()"><i class="fa-solid fa-cart-shopping"></i></button> 
         </div>
       </header>
       <div id="menu-container" class="menu-container"></div>
