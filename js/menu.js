@@ -71,20 +71,44 @@ function updateBasketButton() {
 
   if (basketButton) {
     basketButton.innerHTML = `
-      <i class="fa-solid fa-cart-shopping"></i>  ${itemCount} 
+      <i class="fa-solid fa-cart-shopping"></i> <div class="item-circle"> ${itemCount} </div>
     `;
   }
 }
 
-// Function to show the basket details (items and prices) when clicked
+// Function to show the basket details (items and prices) in a popup
 function showBasketDetails() {
-  const basketDetailsContainer = document.getElementById("basket-details");
-  basketDetailsContainer.innerHTML = ""; // Clear previous details
+  // Check if popup already exists, if so, return
+  if (document.getElementById("basket-popup")) {
+    return; // Prevent showing multiple popups
+  }
+
+  // Create the popup structure
+  const popup = document.createElement("div");
+  popup.id = "basket-popup";
+  popup.classList.add("popup");
+
+  const popupContent = document.createElement("div");
+  popupContent.classList.add("popup-content");
+
+  const closeButton = document.createElement("button");
+  closeButton.classList.add("close-button");
+  closeButton.innerHTML = "X";
+  closeButton.onclick = () => {
+    // Close the popup when clicked
+    document.body.removeChild(popup);
+  };
+
+  // Append close button to popup content
+  popupContent.appendChild(closeButton);
+
+  const basketDetailsContainer = document.createElement("div");
+  basketDetailsContainer.classList.add("basket-details-popup");
 
   if (basket.length === 0) {
     basketDetailsContainer.innerHTML = "<p>Your basket is empty.</p>";
   } else {
-    // Loop through each item in the basket and display it
+    // Loop through each item in the basket and display it in the popup
     basket.forEach((item) => {
       const basketItem = document.createElement("div");
       basketItem.classList.add("basket-item");
@@ -100,6 +124,15 @@ function showBasketDetails() {
     totalDiv.innerHTML = `<strong>Total: $${totalPrice.toFixed(2)}</strong>`;
     basketDetailsContainer.appendChild(totalDiv);
   }
+
+  // Append basket details to popup content
+  popupContent.appendChild(basketDetailsContainer);
+
+  // Append the popup content to the popup
+  popup.appendChild(popupContent);
+
+  // Append the popup to the body of the document
+  document.body.appendChild(popup);
 }
 
 // Function to show the menu
@@ -110,18 +143,19 @@ function showMenu() {
   const menuContent = `
     <section id="menu-section" class="menu-section">
       <header class="menu-header">
-        <div class="filters">
+        <nav class="filters">
           <a onclick="filterMenu('starters')">Starters</a>
           <a onclick="filterMenu('main_courses')">Main Courses</a>
           <a onclick="filterMenu('desserts')">Desserts</a>
-          <button id="basket-button" onclick="showBasketDetails()"><i class="fa-solid fa-cart-shopping"></i></button> 
-        </div>
+           
+        </nav>
       </header>
+      <aside class="aside-menu">
+      <button id="basket-button" onclick="showBasketDetails()"><i class="fa-solid fa-cart-shopping"></i></button>
+      </aside>
       <div id="menu-container" class="menu-container"></div>
     </section>
-    <section id="basket-section" class="basket-section">
-      <div id="basket-details" class="basket-details"></div>
-    </section>
+
   `;
 
   // Replace main content with menu content
