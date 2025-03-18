@@ -105,7 +105,7 @@ function showBasketDetails() {
 
   const checkOutButton = document.createElement("button");
   checkOutButton.classList.add("checkout-btn");
-  closeButton.innerHTML = "Check out";
+  checkOutButton.innerHTML = "Check out";
 
   const closeButton = document.createElement("button");
   closeButton.classList.add("close-button");
@@ -144,6 +144,7 @@ function showBasketDetails() {
   popupContent.appendChild(basketDetailsContainer);
 
   popupContent.appendChild(clearBasket);
+  popupContent.appendChild(checkOutButton);
 
   // Append the popup content to the popup
   popup.appendChild(popupContent);
