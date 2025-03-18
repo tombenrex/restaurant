@@ -53,6 +53,7 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   flex-direction: row-reverse;
+  background-color: #ffffff30;
 }
 
 main {
@@ -60,7 +61,6 @@ main {
 }
 
 .our-history {
-  background-color: #000000cc;
   padding: 2rem;
 }
 
@@ -207,6 +207,7 @@ main {
     "menu basket";
   justify-content: center;
   gap: 1rem;
+  margin-top: 2rem;
 }
 
 .menu-container {

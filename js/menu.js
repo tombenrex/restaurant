@@ -107,6 +107,16 @@ function showBasketDetails() {
   checkOutButton.classList.add("checkout-btn");
   checkOutButton.innerHTML = "Check out";
 
+  checkOutButton.onclick = () => {
+    if (basket.length === 0) {
+      alert("You have nothing to checkout");
+      document.body.removeChild(popup);
+    } else {
+      alert("something else happen here");
+      document.body.removeChild(popup);
+    }
+  };
+
   const closeButton = document.createElement("button");
   closeButton.classList.add("close-button");
   closeButton.innerHTML = `<i class="fa-solid fa-circle-xmark"></i>`;
@@ -170,6 +180,7 @@ function showMenu() {
       </header>
       <aside class="aside-menu">
       <button id="basket-button" onclick="showBasketDetails()"><i class="fa-solid fa-cart-shopping"></i></button>
+      <button id="basket-button" onclick="showBasketDetails()"><i class="fa-solid fa-utensils"></i></button>
       </aside>
       <div id="menu-container" class="menu-container"></div>
     </section>
