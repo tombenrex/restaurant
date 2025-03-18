@@ -112,6 +112,8 @@ main {
   padding-top: 10px;
 }
 
+.fa-circle-xmark,
+.fa-trash,
 .fa-square-plus {
   font-size: 2rem;
 }
@@ -123,7 +125,7 @@ main {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  background-color: red;
+  background-color: #f44336;
   color: white;
   font-size: 1rem;
   font-weight: bold;
@@ -136,7 +138,6 @@ main {
   justify-self: center;
 }
 
-/* Popup container */
 .popup {
   position: fixed;
   top: 0;
@@ -150,7 +151,6 @@ main {
   z-index: 1000;
 }
 
-/* Popup content */
 .popup-content {
   background-color: white;
   padding: 20px;
@@ -158,34 +158,36 @@ main {
   width: 400px;
   max-width: 90%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  position: relative;
 }
 
-/* Close button */
 .close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #f44336;
-  color: white;
+  color: #f44336;
   border: none;
-  border-radius: 50%;
-  font-size: 18px;
+  background: none;
   cursor: pointer;
+  justify-self: end;
+  display: grid;
 }
 
-/* Basket item styling in the popup */
 .basket-item {
   display: flex;
   justify-content: space-between;
   padding: 5px 0;
 }
 
-/* Total price styling */
 .basket-total {
   text-align: right;
   font-weight: bold;
   margin-top: 10px;
+}
+
+.clear-button {
+  font-size: 2rem;
+  display: grid;
+  color: #000;
+  border: none;
+  background: none;
+  justify-self: end;
 }
 
 /*-------------------------------------
@@ -472,7 +474,7 @@ footer p {
   }
 
   .filters {
-    padding: 0rem 0 0rem 0;
+    margin-top: 1rem;
   }
 
   .menu-container {

@@ -91,15 +91,30 @@ function showBasketDetails() {
   const popupContent = document.createElement("div");
   popupContent.classList.add("popup-content");
 
+  const clearBasket = document.createElement("button");
+  clearBasket.classList.add("clear-button");
+  clearBasket.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+  clearBasket.onclick = () => {
+    // Clear the basket and reset the total price
+    basket = [];
+    totalPrice = 0;
+    updateBasketButton(); // Update the basket button UI
+    showBasketDetails(); // Refresh the popup content to show empty basket
+    basketDetailsContainer.innerHTML = "<p>Your basket is empty.</p>";
+  };
+
+  const checkOutButton = document.createElement("button");
+  checkOutButton.classList.add("checkout-btn");
+  closeButton.innerHTML = "Check out";
+
   const closeButton = document.createElement("button");
   closeButton.classList.add("close-button");
-  closeButton.innerHTML = "X";
+  closeButton.innerHTML = `<i class="fa-solid fa-circle-xmark"></i>`;
   closeButton.onclick = () => {
     // Close the popup when clicked
     document.body.removeChild(popup);
   };
 
-  // Append close button to popup content
   popupContent.appendChild(closeButton);
 
   const basketDetailsContainer = document.createElement("div");
@@ -127,6 +142,8 @@ function showBasketDetails() {
 
   // Append basket details to popup content
   popupContent.appendChild(basketDetailsContainer);
+
+  popupContent.appendChild(clearBasket);
 
   // Append the popup content to the popup
   popup.appendChild(popupContent);
