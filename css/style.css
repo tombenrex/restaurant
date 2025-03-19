@@ -200,6 +200,11 @@ main {
   gap: 2rem;
 }
 
+.filters a {
+  text-decoration: none;
+  color: #fff;
+}
+
 .menu-section {
   display: grid;
   grid-template-areas:
