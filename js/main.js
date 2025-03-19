@@ -1,5 +1,5 @@
 // js/main.js
-import { addToBasket, updateBasketButton, showBasketDetails } from "./cart.js";
+
 import { contactUs } from "./contactUs.js";
 import { showMenu } from "./menu.js";
 import { ourHistory } from "./history.js";
@@ -9,7 +9,6 @@ import { createDarkModeToggle } from "./darkmode.js";
 import { setActiveMenuButton } from "./navigation.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-  window.showBasketDetails = showBasketDetails; // This is the key change
   const hamMenu = document.querySelector(".menu-btn");
   const offScreenMenu = document.querySelector(".navigation");
 

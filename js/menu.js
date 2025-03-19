@@ -53,7 +53,7 @@ export function filterMenu(category) {
 
   if (category === "starters") {
     filteredItems = menuData.menu.starters;
-  } else if (category === "main_courses") {
+  } else if (category === "main-courses") {
     filteredItems = menuData.menu.main_courses;
   } else if (category === "desserts") {
     filteredItems = menuData.menu.desserts;
@@ -90,7 +90,7 @@ export function showMenu() {
     .addEventListener("click", () => filterMenu("starters"));
   document
     .getElementById("main-courses-link")
-    .addEventListener("click", () => filterMenu("main_courses"));
+    .addEventListener("click", () => filterMenu("main-courses"));
   document
     .getElementById("desserts-link")
     .addEventListener("click", () => filterMenu("desserts"));
