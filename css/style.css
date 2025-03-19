@@ -96,7 +96,7 @@ main {
   margin-right: 8px;
 }
 
-.fa-cart-shopping {
+.fa-basket-shopping {
   font-size: 2rem;
   color: #fff;
 }
@@ -125,7 +125,7 @@ main {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  background-color: #f44336;
+  background-color: rgb(43, 76, 226);
   color: white;
   font-size: 1rem;
   font-weight: bold;
@@ -161,7 +161,7 @@ main {
 }
 
 .close-button {
-  color: #f44336;
+  color: rgb(43, 76, 226);
   border: none;
   background: none;
   cursor: pointer;
@@ -254,7 +254,7 @@ main {
 
 .price {
   font-weight: bold;
-  color: #d9534f;
+  color: rgb(43, 76, 226);
   font-size: 16px;
 }
 
@@ -359,7 +359,7 @@ main {
 }
 
 .menu-btn.active span {
-  background-color: white;
+  background-color: #fff;
 }
 
 .menu-btn.active span:nth-child(1) {
@@ -380,7 +380,7 @@ main {
  . Dark/Light Mode
 --------------------------------------*/
 
-.dark-mode {
+#dark-mode {
   display: flex;
   align-items: center;
 }
@@ -475,7 +475,7 @@ footer p {
     gap: 1rem;
     overflow-y: auto;
   }
-  .dark-mode {
+  #dark-mode {
     flex-direction: column;
   }
 

@@ -10,14 +10,6 @@
     <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/style.css" />
     <script type="module" src="js/main.js" defer></script>
-
-    <!--     <script src="js/script.js" defer></script>
-    <script src="js/menu.js" defer></script>
-    <script src="js/darkmode.js" defer></script>
-    <script src="js/history.js" defer></script>
-    <script src="js/contact.js" defer></script> -->
-
-    <script src="https://kit.fontawesome.com/70f7a209bd.js"></script>
   </head>
   <!-- Body -->
   <body>
@@ -25,14 +17,7 @@
     <div class="wrapper">
       <!-- Header -->
       <header class="header">
-        <!-- <a href="index.html"
-          ><img
-            class="logo"
-            src="img/logo-dark.png"
-            alt="Restaurant Larsson logo"
-        /></a> -->
         <nav class="navigation">
-          <!-- <div class="logo-container"> -->
           <a href="index.html">
             <img
               class="logo"
@@ -40,7 +25,6 @@
               alt="Restaurant Larsson logo"
             />
           </a>
-          <!-- </div> -->
           <ul>
             <li>
               <button class="nav-btn" id="menu-link">Our Food</button>
@@ -52,19 +36,10 @@
               <button class="nav-btn" id="contact-link">Contact Us</button>
             </li>
           </ul>
-
-          <div class="dark-mode">
-            <input type="checkbox" class="checkbox" id="checkbox" />
-            <label for="checkbox" class="checkbox-label">
-              <i class="fas fa-moon"></i>
-              <i class="fas fa-sun"></i>
-              <span class="ball"></span>
-            </label>
-          </div>
+          <div id="dark-mode"></div>
         </nav>
       </header>
       <main id="main-content"></main>
-
       <!-- Footer -->
       <footer>
         <div class="menu-btn">
@@ -72,7 +47,6 @@
           <span></span>
           <span></span>
         </div>
-
         <p>&copy; 2025 TomBenRex</p>
       </footer>
     </div>

@@ -1,13 +1,12 @@
 // js/main.js
-import {
-  addToBasket,
-  updateBasketButton,
-  showBasketDetails,
-} from "./basket.js";
+import { addToBasket, updateBasketButton, showBasketDetails } from "./cart.js";
 import { contactUs } from "./contactUs.js";
 import { showMenu } from "./menu.js";
 import { ourHistory } from "./history.js";
 import { activateNavItem } from "./navigation.js";
+import { loadFontAwesome } from "./icons.js";
+import { createDarkModeToggle } from "./darkmode.js";
+import { setActiveMenuButton } from "./navigation.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   window.showBasketDetails = showBasketDetails; // This is the key change
@@ -31,7 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.getElementById("menu-link").addEventListener("click", function () {
     activateNavItem("menu-link");
-    showMenu(addToBasket);
+    showMenu();
+    setActiveMenuButton("starters");
     hamMenu.classList.remove("active");
     offScreenMenu.classList.remove("active");
   });
@@ -54,3 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
       contactUs();
     });
 });
+
+loadFontAwesome();
+createDarkModeToggle();

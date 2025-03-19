@@ -1,13 +1,13 @@
-// js/menu.js
-import { addToBasket } from "./basket.js"; // Import the function
-import { showBasketDetails } from "./basket.js";
+import { addToBasket, showBasketDetails } from "./cart.js";
+import { basketIcon, getAddToBasketIcon } from "./icons.js";
+import { setActiveMenuButton } from "./navigation.js"; // Import from navigation.js
 let menuData = {};
 
 export async function fetchMenu() {
   try {
     const response = await fetch("data/data.json");
     menuData = await response.json();
-    displayMenu(menuData.menu.starters, addToBasket);
+    displayMenu(menuData.menu.starters);
   } catch (error) {
     console.error("Error fetching menu:", error);
   }
@@ -32,13 +32,10 @@ export function displayMenu(items) {
       <p>${item.description}</p>
       <div class="price-buy">
         <span class="price">$${item.price.toFixed(2)}</span>
-        <i class="fa-solid fa-square-plus" data-id="${item.id}" data-name="${
-      item.name
-    }" data-price="${item.price}"></i>
+        ${getAddToBasketIcon(item)} 
       </div>
     `;
 
-    // Attach the event listener for the "add to basket" button
     const addButton = menuItem.querySelector("i.fa-square-plus");
     addButton.addEventListener("click", function () {
       const itemId = this.getAttribute("data-id");
@@ -63,6 +60,7 @@ export function filterMenu(category) {
   }
 
   displayMenu(filteredItems);
+  setActiveMenuButton(category);
 }
 
 export function showMenu() {
@@ -72,13 +70,13 @@ export function showMenu() {
       <section id="menu-section" class="menu-section">
       <header class="menu-header">
         <nav class="filters">
-          <a href="#" id="starters-link">Starters</a>
-          <a href="#" id="main-courses-link">Main Courses</a>
-          <a href="#" id="desserts-link">Desserts</a>
+          <a href="#starters-link" id="starters-link">Starters</a>
+          <a href="#main-courses-link" id="main-courses-link">Main Courses</a>
+          <a href="#desserts-link" id="desserts-link">Desserts</a>
         </nav>
       </header>
       <aside class="aside-menu">
-        <button id="basket-button"><i class="fa-solid fa-cart-shopping"></i></button>
+        <button id="basket-button"> ${basketIcon} </i></button>
       </aside>
       <div id="menu-container" class="menu-container"></div>
     </section>
