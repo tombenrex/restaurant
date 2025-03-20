@@ -10,6 +10,10 @@
 
 =========================================*/
 
+/*-------------------------------------
+ 2. Genreral Styles
+--------------------------------------*/
+
 * {
   margin: 0;
   padding: 0;
@@ -25,16 +29,32 @@ body {
   height: 100%;
 }
 
-/*-------------------------------------
- 2. Grid-container / Inline-Grid
---------------------------------------*/
-
 body {
   font-family: "Poppins";
 }
 
+.menu-btn span {
+  background-color: #000;
+}
+
+.checkout-btn,
+.nav-btn,
+.filters a,
+.fa-solid {
+  color: #000;
+}
+
+.item-circle {
+  color: #fff;
+}
+
+.navigation.active,
+.popup-content {
+  background-color: #fff;
+}
+
 /*-------------------------------------
- 2. Header
+ 2. Grid
 --------------------------------------*/
 .wrapper {
   display: grid;
@@ -43,7 +63,6 @@ body {
   grid-template-rows: auto 1fr auto;
   grid-template-areas: "header" "main" "footer";
   height: 100vh;
-  background-color: #000;
   overflow: scroll;
 }
 
@@ -53,7 +72,7 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   flex-direction: row-reverse;
-  background-color: #ffffff30;
+  background-color: #ffffff88;
 }
 
 main {
@@ -71,12 +90,10 @@ main {
 
 .welcome {
   font-family: "Style Script";
-  color: #fff;
   font-size: clamp(1.8rem, 4vw, 4rem);
 }
 .about-txt {
   font-size: clamp(0.8rem, 1.2vw, 1.2rem);
-  color: #fff;
   font-family: inherit;
 }
 
@@ -98,7 +115,6 @@ main {
 
 .fa-basket-shopping {
   font-size: 2rem;
-  color: #fff;
 }
 
 .basket-item {
@@ -118,6 +134,14 @@ main {
   font-size: 2rem;
 }
 
+.fa-trash {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
 .item-circle {
   display: flex;
   align-items: center;
@@ -126,7 +150,6 @@ main {
   height: 1.5rem;
   border-radius: 50%;
   background-color: rgb(43, 76, 226);
-  color: white;
   font-size: 1rem;
   font-weight: bold;
   margin-left: -1rem;
@@ -152,7 +175,8 @@ main {
 }
 
 .popup-content {
-  background-color: white;
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   border-radius: 8px;
   width: 400px;
@@ -167,6 +191,7 @@ main {
   cursor: pointer;
   justify-self: end;
   display: grid;
+  justify-content: end;
 }
 
 .basket-item {
@@ -184,10 +209,15 @@ main {
 .clear-button {
   font-size: 2rem;
   display: grid;
-  color: #000;
   border: none;
   background: none;
   justify-self: end;
+}
+.checkout-btn {
+  padding: 0.5rem;
+  border-radius: 5px;
+  background: none;
+  border: 3px solid #000;
 }
 
 /*-------------------------------------
@@ -202,7 +232,6 @@ main {
 
 .filters a {
   text-decoration: none;
-  color: #fff;
 }
 
 .menu-section {
@@ -224,7 +253,6 @@ main {
 }
 
 .menu-item {
-  background: white;
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -248,7 +276,6 @@ main {
 
 .menu-item p {
   font-size: 14px;
-  color: #555;
   margin-bottom: 10px;
 }
 
@@ -274,7 +301,6 @@ main {
   border: none;
   background: none;
   font-family: "Poppins", sans-serif;
-  color: #fff;
 }
 .filters a::before,
 .nav-btn::before {
@@ -341,7 +367,6 @@ main {
 .menu-btn span {
   height: 5px;
   width: 100%;
-  background-color: #fff;
   border-radius: 25px;
   position: absolute;
   left: 50%;
@@ -356,10 +381,6 @@ main {
 
 .menu-btn span:nth-child(3) {
   top: 75%;
-}
-
-.menu-btn.active span {
-  background-color: #fff;
 }
 
 .menu-btn.active span:nth-child(1) {
@@ -426,8 +447,28 @@ main {
   transform: translateX(24px);
 }
 
-.dark-mode-active {
+.wrapper.dark {
   background: url(../img/wrapper-dark.jpg) center / cover no-repeat;
+}
+
+.header.dark {
+  background-color: #00000041;
+}
+
+.span.dark {
+  background-color: #fff;
+}
+
+.navigation.active.dark,
+.popup-content.dark {
+  background-color: #000;
+}
+.span.dark,
+.nav-btn.dark,
+.filter.dark,
+.dark .fa-solid,
+main.dark {
+  color: #fff;
 }
 
 /*-------------------------------------
@@ -440,7 +481,6 @@ footer {
 
 footer p {
   display: flex;
-  color: #ffffff3f;
   justify-content: center;
   font-size: clamp(0.8rem, 1.5vw, 1.5rem);
 }
@@ -472,7 +512,6 @@ footer p {
     height: 100%;
     left: 0;
     position: absolute;
-    background-color: #000000f2;
     background-image: none;
     display: flex;
     flex-direction: column;
@@ -480,6 +519,7 @@ footer p {
     gap: 1rem;
     overflow-y: auto;
   }
+
   #dark-mode {
     flex-direction: column;
   }

@@ -1,5 +1,4 @@
 // js/main.js
-
 import { contactUs } from "./contactUs.js";
 import { showMenu } from "./menu.js";
 import { ourHistory } from "./history.js";
@@ -56,3 +55,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
 loadFontAwesome();
 createDarkModeToggle();
+showMenu();

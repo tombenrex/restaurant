@@ -1,6 +1,6 @@
 // js/darkmode.js
-
 import { moonIcon, sunIcon } from "./icons.js";
+let isDarkMode = false;
 
 export function createDarkModeToggle() {
   const darkModeContainer = document.createElement("div");
@@ -23,14 +23,43 @@ export function createDarkModeToggle() {
     return;
   }
 
-  const wrapper = document.querySelector(".wrapper");
+  const darkElements = document.querySelectorAll(
+    ".header, .menu-section, .wrapper, .nav-btn, .fa-solid, main, .filter, .filters a, .popup-content, .navigation.active, .span"
+  );
   const checkbox = document.getElementById("checkbox");
+  const logo = document.querySelector(".logo");
 
-  if (wrapper && checkbox) {
+  if (checkbox) {
     checkbox.addEventListener("change", () => {
-      wrapper.classList.toggle("dark-mode-active", checkbox.checked);
+      isDarkMode = checkbox.checked;
+      darkElements.forEach((element) => {
+        if (isDarkMode) {
+          element.classList.add("dark");
+        } else {
+          element.classList.remove("dark");
+        }
+      });
+
+      if (logo) {
+        logo.src = isDarkMode ? "img/logo-dark.png" : "img/logo-light.png";
+      }
+
+      reapplyDarkMode(); // Reapply dark mode immediately after toggling
     });
   } else {
-    console.error("Wrapper or checkbox not found.");
+    console.error("Checkbox not found.");
   }
+}
+
+export function reapplyDarkMode() {
+  const darkElements = document.querySelectorAll(
+    ".header, .menu-section, .wrapper, .nav-btn, .fa-solid, main, .filter, .filters a, .popup-content, .navigation.active, .span"
+  );
+  darkElements.forEach((element) => {
+    if (isDarkMode) {
+      element.classList.add("dark");
+    } else {
+      element.classList.remove("dark");
+    }
+  });
 }

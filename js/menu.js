@@ -1,6 +1,7 @@
 import { addToBasket, showBasketDetails } from "./cart.js";
 import { basketIcon, getAddToBasketIcon } from "./icons.js";
-import { setActiveMenuButton } from "./navigation.js"; // Import from navigation.js
+import { setActiveMenuButton } from "./navigation.js";
+import { reapplyDarkMode } from "./darkmode.js";
 let menuData = {};
 
 export async function fetchMenu() {
@@ -46,6 +47,8 @@ export function displayMenu(items) {
 
     menuContainer.appendChild(menuItem);
   });
+
+  reapplyDarkMode(); // Reapply dark mode after updating the menu content
 }
 
 export function filterMenu(category) {
@@ -61,6 +64,7 @@ export function filterMenu(category) {
 
   displayMenu(filteredItems);
   setActiveMenuButton(category);
+  reapplyDarkMode(); // Reapply dark mode after filtering the menu
 }
 
 export function showMenu() {
@@ -70,9 +74,9 @@ export function showMenu() {
       <section id="menu-section" class="menu-section">
       <header class="menu-header">
         <nav class="filters">
-          <a href="#starters-link" id="starters-link">Starters</a>
-          <a href="#main-courses-link" id="main-courses-link">Main Courses</a>
-          <a href="#desserts-link" id="desserts-link">Desserts</a>
+          <a href="#starters-link" id="starters-link" class="filter">Starters</a>
+          <a href="#main-courses-link" id="main-courses-link" class="filter">Main Courses</a>
+          <a href="#desserts-link" id="desserts-link" class="filter">Desserts</a>
         </nav>
       </header>
       <aside class="aside-menu">
@@ -99,4 +103,5 @@ export function showMenu() {
     .addEventListener("click", showBasketDetails);
 
   fetchMenu(addToBasket);
+  reapplyDarkMode(); // Reapply dark mode after showing the menu
 }
