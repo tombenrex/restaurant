@@ -24,14 +24,12 @@ export function createDarkModeToggle() {
     return;
   }
 
-  // Select checkbox *after* appending it
   const checkbox = document.getElementById("checkbox");
   if (!checkbox) {
     console.error("Checkbox not found.");
     return;
   }
 
-  // Set initial checkbox state based on localStorage
   checkbox.checked = isDarkMode;
   reapplyDarkMode();
 

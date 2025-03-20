@@ -1,9 +1,10 @@
-// js/cart.js
-
 import { basketIcon, circleIcon } from "./icons.js";
 
-let basket = [];
-let totalPrice = 0;
+let basket = JSON.parse(localStorage.getItem("basket")) || [];
+let totalPrice = basket.reduce(
+  (total, item) => total + item.price * item.quantity,
+  0
+);
 
 export function addToBasket(itemId, itemName, itemPrice) {
   const existingItem = basket.find((item) => item.id === itemId);
@@ -15,26 +16,20 @@ export function addToBasket(itemId, itemName, itemPrice) {
   }
 
   totalPrice += itemPrice;
-
+  saveBasket();
   updateBasketButton();
 }
 
 export function updateBasketButton() {
   const basketButton = document.getElementById("basket-button");
-  const itemCount = basket.reduce((total, item) => total + item.quantity, 0);
+  if (!basketButton) return;
 
-  if (basketButton) {
-    basketButton.innerHTML = `
-       ${basketIcon} <div class="item-circle"> ${itemCount} </div>
-    `;
-  }
+  const itemCount = basket.reduce((total, item) => total + item.quantity, 0);
+  basketButton.innerHTML = `${basketIcon} <div class="item-circle">${itemCount}</div>`;
 }
 
 export function showBasketDetails() {
-  const existingPopup = document.getElementById("basket-popup");
-  if (existingPopup) {
-    existingPopup.remove();
-  }
+  removeExistingPopup();
 
   const popup = document.createElement("div");
   popup.id = "basket-popup";
@@ -43,68 +38,86 @@ export function showBasketDetails() {
   const popupContent = document.createElement("div");
   popupContent.classList.add("popup-content");
 
-  const clearBasket = document.createElement("button");
-  clearBasket.classList.add("clear-button");
-  clearBasket.innerHTML = `<i class="fa-solid fa-trash"></i>`;
-  clearBasket.onclick = () => {
-    basket = [];
-    totalPrice = 0;
-    updateBasketButton();
-    showBasketDetails();
-  };
-
-  const checkOutButton = document.createElement("button");
-  checkOutButton.classList.add("checkout-btn");
-  checkOutButton.innerHTML = "Check out";
-
-  checkOutButton.onclick = () => {
-    if (basket.length === 0) {
-      alert("You have nothing to checkout");
-      document.body.removeChild(popup);
-    } else {
-      alert("Proceed to checkout...");
-
-      document.body.removeChild(popup);
-    }
-  };
-
-  const closeButton = document.createElement("button");
-  closeButton.classList.add("close-button");
-  closeButton.innerHTML = `${circleIcon}`;
-  closeButton.onclick = () => {
-    document.body.removeChild(popup);
-  };
+  const closeButton = createButton("close-button", circleIcon, () =>
+    document.body.removeChild(popup)
+  );
+  const clearBasketButton = createButton(
+    "clear-button",
+    '<i class="fa-solid fa-trash"></i>',
+    clearBasket
+  );
+  const checkOutButton = createButton(
+    "checkout-btn",
+    "Check out",
+    handleCheckout
+  );
 
   popupContent.appendChild(closeButton);
+  popupContent.appendChild(renderBasketItems());
+  popupContent.appendChild(clearBasketButton);
+  popupContent.appendChild(checkOutButton);
 
-  const basketDetailsContainer = document.createElement("div");
-  basketDetailsContainer.classList.add("basket-details-popup");
+  popup.appendChild(popupContent);
+  document.body.appendChild(popup);
+}
+
+function renderBasketItems() {
+  const container = document.createElement("div");
+  container.classList.add("basket-details-popup");
 
   if (basket.length === 0) {
-    basketDetailsContainer.innerHTML = "<p>Your basket is empty.</p>";
+    container.innerHTML = "<p>Your basket is empty.</p>";
   } else {
-    basket.forEach((item) => {
-      const basketItem = document.createElement("div");
-      basketItem.classList.add("basket-item");
-      basketItem.innerHTML = `
-        <span>${item.name} (x${item.quantity})</span>
-        <span>$${(item.price * item.quantity).toFixed(2)}</span>
-      `;
-      basketDetailsContainer.appendChild(basketItem);
-    });
+    container.innerHTML = basket
+      .map(
+        (item) => `
+        <div class="basket-item">
+          <span>${item.name} (x${item.quantity})</span>
+          <span>$${(item.price * item.quantity).toFixed(2)}</span>
+        </div>
+      `
+      )
+      .join("");
 
     const totalDiv = document.createElement("div");
     totalDiv.classList.add("basket-total");
     totalDiv.innerHTML = `<strong>Total: $${totalPrice.toFixed(2)}</strong>`;
-    basketDetailsContainer.appendChild(totalDiv);
+    container.appendChild(totalDiv);
   }
 
-  popupContent.appendChild(basketDetailsContainer);
+  return container;
+}
 
-  popupContent.appendChild(clearBasket);
-  popupContent.appendChild(checkOutButton);
+function createButton(className, innerHTML, onClick) {
+  const button = document.createElement("button");
+  button.classList.add(className);
+  button.innerHTML = innerHTML;
+  button.onclick = onClick;
+  return button;
+}
 
-  popup.appendChild(popupContent);
+function clearBasket() {
+  basket = [];
+  totalPrice = 0;
+  saveBasket();
+  updateBasketButton();
+  showBasketDetails();
+}
 
-  document.body.appendChild(popup);
+function handleCheckout() {
+  if (basket.length === 0) {
+    alert("You have nothing to checkout");
+  } else {
+    alert("Proceed to checkout...");
+  }
+  removeExistingPopup();
+}
+
+function removeExistingPopup() {
+  const existingPopup = document.getElementById("basket-popup");
+  if (existingPopup) existingPopup.remove();
+}
+
+function saveBasket() {
+  localStorage.setItem("basket", JSON.stringify(basket));
 }

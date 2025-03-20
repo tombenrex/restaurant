@@ -2,26 +2,33 @@ import { addToBasket, showBasketDetails } from "./cart.js";
 import { basketIcon, getAddToBasketIcon } from "./icons.js";
 import { setActiveMenuButton } from "./navigation.js";
 import { reapplyDarkMode } from "./darkmode.js";
+
 let menuData = {};
 
 export async function fetchMenu() {
   try {
     const response = await fetch("data/data.json");
     menuData = await response.json();
-    displayMenu(menuData.menu.starters);
+
+    displayMenu("starters"); // Default to starters
   } catch (error) {
     console.error("Error fetching menu:", error);
   }
 }
 
-export function displayMenu(items) {
+export function displayMenu(category) {
   const menuContainer = document.getElementById("menu-container");
+  if (!menuContainer) return;
+
   menuContainer.innerHTML = "";
 
+  const items = menuData.menu[category] || [];
   if (items.length === 0) {
     menuContainer.innerHTML = "<p>No items available.</p>";
     return;
   }
+
+  const fragment = document.createDocumentFragment();
 
   items.forEach((item) => {
     const menuItem = document.createElement("div");
@@ -37,71 +44,61 @@ export function displayMenu(items) {
       </div>
     `;
 
-    const addButton = menuItem.querySelector("i.fa-square-plus");
-    addButton.addEventListener("click", function () {
-      const itemId = this.getAttribute("data-id");
-      const itemName = this.getAttribute("data-name");
-      const itemPrice = parseFloat(this.getAttribute("data-price"));
-      addToBasket(itemId, itemName, itemPrice);
-    });
+    menuItem
+      .querySelector("i.fa-square-plus")
+      .addEventListener("click", () =>
+        addToBasket(item.id, item.name, item.price)
+      );
 
-    menuContainer.appendChild(menuItem);
+    fragment.appendChild(menuItem);
   });
 
-  reapplyDarkMode(); // Reapply dark mode after updating the menu content
+  menuContainer.appendChild(fragment);
+  reapplyDarkMode(); // Ensure dark mode is applied after updating the menu
 }
 
 export function filterMenu(category) {
-  let filteredItems = [];
-
-  if (category === "starters") {
-    filteredItems = menuData.menu.starters;
-  } else if (category === "main-courses") {
-    filteredItems = menuData.menu.main_courses;
-  } else if (category === "desserts") {
-    filteredItems = menuData.menu.desserts;
-  }
-
-  displayMenu(filteredItems);
+  if (!menuData.menu[category]) return;
+  displayMenu(category);
   setActiveMenuButton(category);
-  reapplyDarkMode(); // Reapply dark mode after filtering the menu
 }
 
 export function showMenu() {
   const mainContent = document.getElementById("main-content");
+  if (!mainContent) return;
 
-  const menuContent = `
-      <section id="menu-section" class="menu-section">
+  mainContent.innerHTML = `
+    <section id="menu-section" class="menu-section">
       <header class="menu-header">
         <nav class="filters">
-          <a href="#starters-link" id="starters-link" class="filter">Starters</a>
-          <a href="#main-courses-link" id="main-courses-link" class="filter">Main Courses</a>
-          <a href="#desserts-link" id="desserts-link" class="filter">Desserts</a>
+          ${["starters", "main-courses", "desserts"]
+            .map(
+              (category) =>
+                `<a href="#${category}-link" id="${category}-link" class="filter">${category
+                  .replace("-", " ")
+                  .toUpperCase()}</a>`
+            )
+            .join("")}
         </nav>
       </header>
       <aside class="aside-menu">
-        <button id="basket-button"> ${basketIcon} </i></button>
+        <button id="basket-button">${basketIcon}</button>
       </aside>
       <div id="menu-container" class="menu-container"></div>
     </section>
   `;
 
-  mainContent.innerHTML = menuContent;
+  // Attach event listeners dynamically
+  ["starters", "main-courses", "desserts"].forEach((category) => {
+    document
+      .getElementById(`${category}-link`)
+      ?.addEventListener("click", () => filterMenu(category));
+  });
 
-  // Attach event listeners to the filter links
-  document
-    .getElementById("starters-link")
-    .addEventListener("click", () => filterMenu("starters"));
-  document
-    .getElementById("main-courses-link")
-    .addEventListener("click", () => filterMenu("main-courses"));
-  document
-    .getElementById("desserts-link")
-    .addEventListener("click", () => filterMenu("desserts"));
   document
     .getElementById("basket-button")
-    .addEventListener("click", showBasketDetails);
+    ?.addEventListener("click", showBasketDetails);
 
-  fetchMenu(addToBasket);
-  reapplyDarkMode(); // Reapply dark mode after showing the menu
+  fetchMenu();
+  reapplyDarkMode(); // Ensure dark mode applies after rendering the menu
 }

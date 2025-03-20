@@ -16,7 +16,7 @@
         "image": "img/food/caesar-salad.jpg"
       }
     ],
-    "main_courses": [
+    "main-courses": [
       {
         "id": 3,
         "name": "Grilled Salmon",
