@@ -1,10 +1,9 @@
-// js/main.js
-import { contactUs } from "./contactUs.js";
+import { createDarkModeToggle, reapplyDarkMode } from "./darkmode.js";
+import { loadFontAwesome } from "./icons.js";
 import { showMenu } from "./menu.js";
 import { ourHistory } from "./history.js";
+import { contactUs } from "./contactUs.js";
 import { activateNavItem } from "./navigation.js";
-import { loadFontAwesome } from "./icons.js";
-import { createDarkModeToggle } from "./darkmode.js";
 import { setActiveMenuButton } from "./navigation.js";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -51,8 +50,9 @@ document.addEventListener("DOMContentLoaded", function () {
       offScreenMenu.classList.remove("active");
       contactUs();
     });
-});
 
-loadFontAwesome();
-createDarkModeToggle();
-showMenu();
+  loadFontAwesome();
+  createDarkModeToggle();
+  reapplyDarkMode(); // Reapply dark mode on page load
+  showMenu();
+});

@@ -24,7 +24,7 @@ export function createDarkModeToggle() {
   }
 
   const darkElements = document.querySelectorAll(
-    ".header, .menu-section, .wrapper, .nav-btn, .fa-solid, main, .filter, .filters a, .popup-content, .navigation.active, .span"
+    ".header, .menu-section, .wrapper, .nav-btn, .fa-solid, main, .filter, .filters a, .popup-content, .navigation.active, .span, .menu-item"
   );
   const checkbox = document.getElementById("checkbox");
   const logo = document.querySelector(".logo");
@@ -44,7 +44,7 @@ export function createDarkModeToggle() {
         logo.src = isDarkMode ? "img/logo-dark.png" : "img/logo-light.png";
       }
 
-      reapplyDarkMode(); // Reapply dark mode immediately after toggling
+      reapplyDarkMode();
     });
   } else {
     console.error("Checkbox not found.");
@@ -53,7 +53,7 @@ export function createDarkModeToggle() {
 
 export function reapplyDarkMode() {
   const darkElements = document.querySelectorAll(
-    ".header, .menu-section, .wrapper, .nav-btn, .fa-solid, main, .filter, .filters a, .popup-content, .navigation.active, .span"
+    ".header, .menu-section, .wrapper, .nav-btn, .fa-solid, main, .filter, .filters a, .popup-content, .navigation.active, .span, .menu-item"
   );
   darkElements.forEach((element) => {
     if (isDarkMode) {

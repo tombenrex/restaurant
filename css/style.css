@@ -74,6 +74,7 @@ body {
   align-items: flex-start;
   flex-direction: row-reverse;
   background-color: #ffffff88;
+  border-bottom: 1px solid #000;
 }
 
 main {
@@ -258,6 +259,7 @@ main {
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
+  border: 1px solid #000;
 }
 
 .menu-header {
@@ -413,7 +415,7 @@ main {
 }
 
 .checkbox-label {
-  background-color: #111;
+  background-color: #000;
   width: 50px;
   height: 26px;
   border-radius: 50px;
@@ -454,10 +456,15 @@ main {
 
 .header.dark {
   background-color: #00000041;
+  border-bottom: 1px solid #fff;
 }
 
 .span.dark {
   background-color: #fff;
+}
+
+.menu-item.dark {
+  border: 1px solid #fff;
 }
 
 .navigation.active.dark,
@@ -530,7 +537,7 @@ footer p {
   }
 
   .menu-container {
-    padding: 0 2rem 0 0;
+    padding: 0 3rem 2rem 0;
   }
 
   .menu-section {
@@ -544,9 +551,81 @@ footer p {
     margin-bottom: 3rem;
   }
 
-  footer p {
+  /*   footer p {
     position: absolute;
     bottom: 0;
     right: 2rem;
+  } */
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .menu-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "menu-header basket"
+      "menu menu";
+    width: 100vw;
+    padding: 0 0 0 5rem;
+  }
+
+  .menu-container {
+    max-width: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .menu-item {
+    flex: 1 1 calc(50% - 1rem);
+  }
+
+  .aside-menu {
+    align-self: flex-start;
+  }
+
+  .filters {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .navigation {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .navigation.active {
+    height: auto;
+    padding: 1rem;
+  }
+
+  .welcome {
+    font-size: clamp(1.5rem, 3vw, 3.5rem);
+  }
+
+  .about-txt {
+    font-size: clamp(0.7rem, 1vw, 1.1rem);
+    margin-bottom: 1rem;
+  }
+
+  .checkout-btn {
+    padding: 0.3rem 1rem;
+  }
+  .menu-btn {
+    position: fixed;
+    z-index: 1001;
+  }
+
+  .logo {
+    padding: 0;
+  }
+  .navigation a {
+    padding: 0;
+    margin: 0;
+  }
+  .navigation li {
+    padding: 0.3rem;
   }
 }
