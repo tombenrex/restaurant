@@ -1,6 +1,7 @@
 // js/darkmode.js
 import { moonIcon, sunIcon } from "./icons.js";
-let isDarkMode = false;
+
+let isDarkMode = localStorage.getItem("darkMode") === "enabled";
 
 export function createDarkModeToggle() {
   const darkModeContainer = document.createElement("div");
@@ -23,43 +24,35 @@ export function createDarkModeToggle() {
     return;
   }
 
-  const darkElements = document.querySelectorAll(
-    ".header, .menu-section, .wrapper, .nav-btn, .fa-solid, main, .filter, .filters a, .popup-content, .navigation.active, .span, .menu-item"
-  );
+  // Select checkbox *after* appending it
   const checkbox = document.getElementById("checkbox");
-  const logo = document.querySelector(".logo");
-
-  if (checkbox) {
-    checkbox.addEventListener("change", () => {
-      isDarkMode = checkbox.checked;
-      darkElements.forEach((element) => {
-        if (isDarkMode) {
-          element.classList.add("dark");
-        } else {
-          element.classList.remove("dark");
-        }
-      });
-
-      if (logo) {
-        logo.src = isDarkMode ? "img/logo-dark.png" : "img/logo-light.png";
-      }
-
-      reapplyDarkMode();
-    });
-  } else {
+  if (!checkbox) {
     console.error("Checkbox not found.");
+    return;
   }
+
+  // Set initial checkbox state based on localStorage
+  checkbox.checked = isDarkMode;
+  reapplyDarkMode();
+
+  checkbox.addEventListener("change", () => {
+    isDarkMode = checkbox.checked;
+    localStorage.setItem("darkMode", isDarkMode ? "enabled" : "disabled");
+    reapplyDarkMode();
+  });
 }
 
 export function reapplyDarkMode() {
   const darkElements = document.querySelectorAll(
-    ".header, .menu-section, .wrapper, .nav-btn, .fa-solid, main, .filter, .filters a, .popup-content, .navigation.active, .span, .menu-item"
+    ".header, .menu-section, .wrapper, .nav-btn, .fa-solid, main, .filter, .filters a, .popup-content, .navigation.active, .span, .menu-item, .checkbox-label, .ball"
   );
+
   darkElements.forEach((element) => {
-    if (isDarkMode) {
-      element.classList.add("dark");
-    } else {
-      element.classList.remove("dark");
-    }
+    element.classList.toggle("dark", isDarkMode);
   });
+
+  const logo = document.querySelector(".logo");
+  if (logo) {
+    logo.src = isDarkMode ? "img/logo-dark.png" : "img/logo-light.png";
+  }
 }

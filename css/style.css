@@ -458,7 +458,7 @@ main {
   background-color: #00000041;
   border-bottom: 1px solid #fff;
 }
-
+.checkbox-label.dark,
 .span.dark {
   background-color: #fff;
 }
@@ -466,7 +466,7 @@ main {
 .menu-item.dark {
   border: 1px solid #fff;
 }
-
+.ball.dark,
 .navigation.active.dark,
 .popup-content.dark {
   background-color: #000;
