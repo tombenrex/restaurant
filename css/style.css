@@ -38,7 +38,7 @@ body {
 --------------------------------------*/
 .wrapper {
   display: grid;
-  background: url(../img/header.jpg) center/cover no-repeat;
+  background: url(../img/wrapper-light.jpg) center/cover no-repeat;
   grid-template-columns: auto;
   grid-template-rows: auto 1fr auto;
   grid-template-areas: "header" "main" "footer";
@@ -426,6 +426,10 @@ main {
   transform: translateX(24px);
 }
 
+.dark-mode-active {
+  background: url(../img/wrapper-dark.jpg) center / cover no-repeat;
+}
+
 /*-------------------------------------
  . Footer
 --------------------------------------*/
@@ -436,6 +440,7 @@ footer {
 
 footer p {
   display: flex;
+  color: #ffffff3f;
   justify-content: center;
   font-size: clamp(0.8rem, 1.5vw, 1.5rem);
 }
@@ -499,6 +504,8 @@ footer p {
   }
 
   footer p {
-    color: #fff;
+    position: absolute;
+    bottom: 0;
+    right: 2rem;
   }
 }

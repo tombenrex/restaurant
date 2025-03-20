@@ -7,24 +7,30 @@ export function createDarkModeToggle() {
   darkModeContainer.classList.add("dark-mode");
 
   darkModeContainer.innerHTML = `
-      <input type="checkbox" class="checkbox" id="checkbox" />
-      <label for="checkbox" class="checkbox-label">
-        ${moonIcon}
-        ${sunIcon}
-        <span class="ball"></span>
-      </label>
-    `;
-  // Get the dark mode div by its ID and append the toggle inside it
-  const darkModeDiv = document.getElementById("dark-mode");
-  darkModeDiv.appendChild(darkModeContainer);
+    <input type="checkbox" class="checkbox" id="checkbox" />
+    <label for="checkbox" class="checkbox-label">
+      ${moonIcon}
+      ${sunIcon}
+      <span class="ball"></span>
+    </label>
+  `;
 
-  // Optional: Add event listener for dark mode toggle functionality
+  const darkModeDiv = document.getElementById("dark-mode");
+  if (darkModeDiv) {
+    darkModeDiv.appendChild(darkModeContainer);
+  } else {
+    console.error("Element with ID 'dark-mode' not found.");
+    return;
+  }
+
+  const wrapper = document.querySelector(".wrapper");
   const checkbox = document.getElementById("checkbox");
-  checkbox.addEventListener("change", () => {
-    if (checkbox.checked) {
-      document.body.classList.add("dark-mode-active");
-    } else {
-      document.body.classList.remove("dark-mode-active");
-    }
-  });
+
+  if (wrapper && checkbox) {
+    checkbox.addEventListener("change", () => {
+      wrapper.classList.toggle("dark-mode-active", checkbox.checked);
+    });
+  } else {
+    console.error("Wrapper or checkbox not found.");
+  }
 }
