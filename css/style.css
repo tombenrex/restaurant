@@ -471,6 +471,7 @@ main {
 .popup-content.dark {
   background-color: #000;
 }
+footer.dark,
 .span.dark,
 .nav-btn.dark,
 .filter.dark,
@@ -503,6 +504,11 @@ footer p {
     position: absolute;
     bottom: 0;
   }
+
+  .header.dark {
+    border: none;
+  }
+
   .navigation {
     display: none;
   }
@@ -550,12 +556,6 @@ footer p {
     margin-top: 2rem;
     margin-bottom: 3rem;
   }
-
-  /*   footer p {
-    position: absolute;
-    bottom: 0;
-    right: 2rem;
-  } */
 }
 
 @media (max-width: 768px) and (orientation: landscape) {

@@ -44,7 +44,7 @@ export function createDarkModeToggle() {
 
 export function reapplyDarkMode() {
   const darkElements = document.querySelectorAll(
-    ".header, .menu-section, .wrapper, .nav-btn, .fa-solid, main, .filter, .filters a, .popup-content, .navigation.active, .span, .menu-item, .checkbox-label, .ball"
+    ".header, footer, .menu-section, .wrapper, .nav-btn, .fa-solid, main, .filter, .filters a, .popup-content, .navigation.active, .span, .menu-item, .checkbox-label, .ball"
   );
 
   darkElements.forEach((element) => {
