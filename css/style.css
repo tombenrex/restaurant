@@ -513,9 +513,8 @@ footer {
 }
 
 footer p {
-  display: flex;
-  justify-content: center;
   font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+  text-align: center;
 }
 
 /*-------------------------------------
@@ -578,11 +577,6 @@ footer p {
   .about-txt {
     margin-top: 2rem;
     margin-bottom: 3rem;
-  }
-
-  footer p {
-    position: relative;
-    bottom: 0;
   }
 }
 
