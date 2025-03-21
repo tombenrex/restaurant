@@ -104,8 +104,7 @@ main {
 }
 
 .logo {
-  max-height: 150px;
-  padding: 1rem;
+  max-height: 170px;
 }
 
 .welcome {
@@ -543,7 +542,6 @@ footer p {
   }
 
   .navigation a {
-    padding: 1rem;
     margin: 1rem;
   }
 
@@ -649,8 +647,9 @@ footer p {
   }
 
   .logo {
-    padding: 0;
+    max-height: 150px;
   }
+
   .navigation a {
     padding: 0;
     margin: 0;
