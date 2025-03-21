@@ -19,3 +19,4 @@ export const moonIcon = `<i class="fas fa-moon"></i>`;
 export const sunIcon = `<i class="fas fa-sun"></i>`;
 export const basketIcon = `<i class="fa-solid fa-basket-shopping"></i>`;
 export const circleIcon = `<i class="fa-solid fa-circle-xmark"></i>`;
+export const forkIcon = `<i class="fa-solid fa-utensils"></i>`;

@@ -1,5 +1,5 @@
 import { addToBasket, showBasketDetails, updateBasketButton } from "./cart.js";
-import { basketIcon, getAddToBasketIcon } from "./icons.js";
+import { basketIcon, forkIcon, getAddToBasketIcon } from "./icons.js";
 import { setActiveMenuButton } from "./activebtn.js";
 import { reapplyDarkMode } from "./darkmode.js";
 
@@ -10,7 +10,7 @@ export async function fetchMenu() {
     const response = await fetch("data/data.json");
     menuData = await response.json();
 
-    displayMenu("starters"); // Default to starters
+    displayMenu("starters");
   } catch (error) {
     console.error("Error fetching menu:", error);
   }
@@ -54,7 +54,7 @@ export function displayMenu(category) {
   });
 
   menuContainer.appendChild(fragment);
-  reapplyDarkMode(); // Ensure dark mode is applied after updating the menu
+  reapplyDarkMode();
 }
 
 export function filterMenu(category) {
@@ -83,6 +83,7 @@ export function showMenu() {
       </header>
       <aside class="aside-menu">
         <button id="basket-button">${basketIcon}</button>
+        <button id="daily-button">${forkIcon}Today's Lunch</button>
       </aside>
       <div id="menu-container" class="menu-container"></div>
     </section>
