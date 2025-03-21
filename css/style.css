@@ -1,17 +1,29 @@
+/*=========== TABLE OF CONTENTS ===========
+1. Imports
+2. General Styles
+3. Colors
+4. Effects
+5. Font sizes
+6. Grid
+7. Basket // Cart
+8. Menu section
+9. Lunch popup
+10. Navigation Menu
+11. Contact-Form
+12. Hamburger Menu
+13. Dark/Light Mode
+14. Footer
+15. Media Queries
+=========================================*/
+/*-------------------------------------
+ 1. Imports
+--------------------------------------*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Style+Script&display=swap");
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-/*=========== TABLE OF CONTENTS ===========
-1. 
-2. 
-3. 
-4. 
-5. 
-
-=========================================*/
 
 /*-------------------------------------
- 2. Genreral Styles
+ 2. General Styles
 --------------------------------------*/
 
 * {
@@ -61,7 +73,7 @@ body,
 }
 
 /*-------------------------------------
- 2. Effects
+ 4. Effects
 --------------------------------------*/
 
 :where(.fa-square-plus, .fa-circle-xmark, .fa-trash):active {
@@ -82,7 +94,7 @@ body,
 }
 
 /*-------------------------------------
- 2. Font sizes
+ 5. Font sizes
 --------------------------------------*/
 
 :where(.menu-item, .contact-header) h2 {
@@ -90,19 +102,19 @@ body,
 }
 
 :where(.menu-item, .contact-header) p {
-  font-size: clamp(1rem, 1.8vw, 1.8rem);
+  font-size: clamp(0.8rem, 1vw, 1rem);
 }
 
 .price {
-  font-size: clamp(1rem, 1.8vw, 1.8rem);
+  font-size: clamp(0.8rem, 1vw, 1rem);
 }
 
 .filters a {
-  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-size: clamp(1rem, 2vw, 2rem);
 }
 
 /*-------------------------------------
- 2. Grid
+ 6. Grid
 --------------------------------------*/
 .wrapper {
   display: grid;
@@ -111,7 +123,6 @@ body,
   grid-template-rows: auto 1fr auto;
   grid-template-areas: "header" "main" "footer";
   height: 100vh;
-  overflow: scroll;
 }
 
 .header {
@@ -155,7 +166,7 @@ main {
 }
 
 /*-------------------------------------
- . Basket // Cart
+ 7. Basket // Cart
 --------------------------------------*/
 #daily-button,
 #basket-button {
@@ -282,7 +293,7 @@ main {
 }
 
 /*-------------------------------------
- . Menu section
+ 8. Menu section
 --------------------------------------*/
 
 .filters {
@@ -326,7 +337,7 @@ main {
 }
 
 .menu-item img {
-  width: clamp(150px, 50vw, 200px);
+  width: clamp(20px, 50vw, 60px);
   object-fit: cover;
   border-radius: 10px;
 }
@@ -352,7 +363,7 @@ main {
 }
 
 /*-------------------------------------
- . Lunch popup
+ 9. Lunch popup
 --------------------------------------*/
 
 .lunch-popup {
@@ -403,7 +414,7 @@ main {
 }
 
 /*-------------------------------------
- . Navigation Menu
+ 10. Navigation Menu
 --------------------------------------*/
 .filters,
 .nav-btn {
@@ -463,7 +474,7 @@ main {
 }
 
 /*-------------------------------------
- . Contact-Form
+ 11. Contact-Form
 --------------------------------------*/
 .contact-section {
   display: flex;
@@ -482,7 +493,7 @@ main {
   flex-direction: column;
 }
 /*-------------------------------------
- . Hamburger Menu
+ 12. Hamburger Menu
 --------------------------------------*/
 
 .menu-btn {
@@ -527,7 +538,7 @@ main {
 }
 
 /*-------------------------------------
- . Dark/Light Mode
+ 13. Dark/Light Mode
 --------------------------------------*/
 
 #dark-mode {
@@ -610,7 +621,7 @@ main.dark {
 }
 
 /*-------------------------------------
- . Footer
+ 14. Footer
 --------------------------------------*/
 
 footer {
@@ -627,13 +638,20 @@ footer p {
 }
 
 /*-------------------------------------
- . Media Queries
+ 15. Media Queries
 --------------------------------------*/
 
 @media (max-width: 768px) {
   .menu-btn {
     display: block;
-    bottom: 0;
+  }
+
+  #main-content {
+    overflow: scroll;
+  }
+
+  .menu-item h2 {
+    margin: 0;
   }
 
   .our-history {
@@ -659,6 +677,7 @@ footer p {
   .navigation.active {
     height: 100vh;
     left: 0;
+    bottom: 0;
     position: absolute;
     background-image: none;
     display: flex;
@@ -700,15 +719,12 @@ footer p {
       "menu-header basket"
       "menu menu";
     width: 100vw;
-    padding: 0 0 0 5rem;
+    padding: 0 1rem 0 1rem;
   }
 
   .menu-container {
-    max-width: none;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
+    padding: 0;
   }
 
   .menu-item {
@@ -717,6 +733,8 @@ footer p {
 
   .aside-menu {
     align-self: flex-start;
+    flex-direction: row-reverse;
+    align-items: normal;
   }
 
   .filters {
@@ -727,11 +745,6 @@ footer p {
   .navigation {
     flex-direction: row;
     justify-content: center;
-  }
-
-  .navigation.active {
-    height: auto;
-    padding: 1rem;
   }
 
   .welcome {
