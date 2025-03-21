@@ -118,7 +118,7 @@ main {
 }
 
 /*-------------------------------------
- . Basket
+ . Basket // Cart
 --------------------------------------*/
 #daily-button,
 #basket-button {
@@ -348,21 +348,19 @@ main {
 }
 
 .lunch-content h2 {
-  font-size: 24px;
+  font-size: clamp(1rem, 1.8vw, 1.8rem);
   color: #333;
   text-align: center;
   margin-bottom: 20px;
 }
 
 .lunch-content h3 {
-  font-size: 20px;
-  color: #444;
+  font-size: clamp(0.8rem, 1.5vw, 1.5rem);
   margin-top: 20px;
 }
 
-.lunch-conten > p {
-  font-size: 16px;
-  color: #666;
+.lunch-content p {
+  font-size: clamp(0.7rem, 1.2vw, 1.2rem);
   line-height: 1.6;
   margin: 5px 0;
 }
@@ -574,7 +572,6 @@ footer {
 
 footer p {
   font-size: clamp(0.8rem, 1.5vw, 1.5rem);
-
   margin-right: 2rem;
 }
 
@@ -585,7 +582,6 @@ footer p {
 @media (max-width: 768px) {
   .menu-btn {
     display: block;
-
     bottom: 0;
   }
 
