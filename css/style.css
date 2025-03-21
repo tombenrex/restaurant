@@ -510,11 +510,16 @@ main.dark {
 
 footer {
   grid-area: footer;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-direction: row-reverse;
 }
 
 footer p {
   font-size: clamp(0.8rem, 1.5vw, 1.5rem);
-  text-align: center;
+
+  margin-right: 2rem;
 }
 
 /*-------------------------------------
@@ -524,7 +529,7 @@ footer p {
 @media (max-width: 768px) {
   .menu-btn {
     display: block;
-    position: absolute;
+
     bottom: 0;
   }
 
