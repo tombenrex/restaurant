@@ -66,4 +66,13 @@ document.addEventListener("DOMContentLoaded", () => {
     activateNavItem("history-link");
     ourHistory();
   }
+
+  const logo = document.getElementById("logo");
+
+  // Add event listener for logo click
+  if (logo) {
+    logo.addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+  }
 });

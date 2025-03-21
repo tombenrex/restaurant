@@ -42,7 +42,7 @@ export function createDarkModeToggle() {
 
 export function reapplyDarkMode() {
   const darkElements = document.querySelectorAll(
-    ".header, footer, .menu-section, .wrapper, .nav-btn, .fa-solid, main, .filter, .filters a, .popup-content, .navigation.active, .span, .menu-item, .checkbox-label, .ball, #daily-button"
+    ".header, footer, .menu-section, .wrapper, .nav-btn, .fa-solid, main, .filter, .filters a, .popup-content, .navigation, .span, .menu-item, .checkbox-label, .ball, #daily-button"
   );
 
   darkElements.forEach((element) => {
