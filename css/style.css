@@ -50,6 +50,7 @@ body {
   color: #fff;
 }
 
+.lunch-content,
 .navigation.active,
 .popup-content {
   background-color: #fff;
@@ -318,6 +319,61 @@ main {
 }
 
 /*-------------------------------------
+ . Lunch popup
+--------------------------------------*/
+
+.lunch-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*   z-index: 9999;
+  animation: fadeIn 0.3s ease-in-out; */
+}
+
+.lunch-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+.lunch-content h2 {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.lunch-content h3 {
+  font-size: 20px;
+  color: #444;
+  margin-top: 20px;
+}
+
+.lunch-conten > p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+  margin: 5px 0;
+}
+
+.special-offer {
+  font-weight: bold;
+  color: #f44336;
+  margin-top: 20px;
+}
+
+/*-------------------------------------
  . Navigation Menu
 --------------------------------------*/
 .filters,
@@ -558,7 +614,6 @@ footer p {
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
-    /* overflow-y: auto; */
   }
 
   #dark-mode {
