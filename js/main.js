@@ -1,13 +1,23 @@
+// main.js
+
 import { createDarkModeToggle, reapplyDarkMode } from "./darkmode.js";
 import { loadFontAwesome } from "./icons.js";
 import { showMenu } from "./menu.js";
 import { ourHistory } from "./history.js";
-import { contactUs } from "./contactUs.js";
-import { activateNavItem, setActiveMenuButton } from "./navigation.js";
+import { contactUs } from "./contactus.js";
+import { activateNavItem, setActiveMenuButton } from "./activebtn.js";
+import { updateBasketButton } from "./cart.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  updateBasketButton();
+
   const hamMenu = document.querySelector(".menu-btn");
   const offScreenMenu = document.querySelector(".navigation");
+
+  function closeMenu() {
+    hamMenu?.classList.remove("active");
+    offScreenMenu?.classList.remove("active");
+  }
 
   if (hamMenu && offScreenMenu) {
     hamMenu.addEventListener("click", () => {
@@ -23,11 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
         closeMenu();
       }
     });
-  }
-
-  function closeMenu() {
-    hamMenu.classList.remove("active");
-    offScreenMenu.classList.remove("active");
   }
 
   const pageLinks = {
@@ -47,17 +52,18 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   Object.entries(pageLinks).forEach(([id, handler]) => {
-    const link = document.getElementById(id);
-    if (link) {
-      link.addEventListener("click", () => {
-        handler();
-        closeMenu();
-      });
-    }
+    document.getElementById(id)?.addEventListener("click", () => {
+      handler();
+      closeMenu();
+    });
   });
 
   loadFontAwesome();
   createDarkModeToggle();
   reapplyDarkMode();
-  showMenu();
+
+  if (!window.location.hash || window.location.hash === "#history") {
+    activateNavItem("history-link");
+    ourHistory();
+  }
 });

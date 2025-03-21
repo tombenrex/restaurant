@@ -1,6 +1,6 @@
-import { addToBasket, showBasketDetails } from "./cart.js";
+import { addToBasket, showBasketDetails, updateBasketButton } from "./cart.js";
 import { basketIcon, getAddToBasketIcon } from "./icons.js";
-import { setActiveMenuButton } from "./navigation.js";
+import { setActiveMenuButton } from "./activebtn.js";
 import { reapplyDarkMode } from "./darkmode.js";
 
 let menuData = {};
@@ -101,4 +101,5 @@ export function showMenu() {
 
   fetchMenu();
   reapplyDarkMode(); // Ensure dark mode applies after rendering the menu
+  updateBasketButton(); // **Ensure basket count is updated**
 }
