@@ -1,4 +1,4 @@
-// js/contactUs.js
+// js/contactus.js
 
 export function contactUs() {
   const mainContent = document.getElementById("main-content");
